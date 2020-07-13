@@ -248,7 +248,7 @@ section.feature-home .img-feature{
     margin: 15px auto;
 }
 
-.bg-dark .card-people *{
+.bg-dark *{
     color: var(--white);
 }
 

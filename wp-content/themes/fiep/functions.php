@@ -50,11 +50,13 @@ function remove_already_displayed_posts($query) {
 
 
 /* Custom Post Type Start */
-function create_posttype() {
+function create_posttype() {  
   register_post_type( 'personas',
   // CPT Options
   array(
     'labels' => array(
+      'add_new'            => _x( 'Añadir nueva', 'persona', 'text-domain' ),
+		  'add_new_item'       => __( 'Añadir nueva persona', 'text-domain' ),
       'menu_icon'   => 'dashicons-groups',
      'name' => __( 'Personas' ),
      
@@ -63,8 +65,21 @@ function create_posttype() {
     'public' => true,
     'has_archive' => false,
     'rewrite' => array('slug' => 'persona'),
+    
    )
   );
+
+  // remplazar titulo 
+  add_filter( 'enter_title_here', 'custom_enter_title' );
+function custom_enter_title( $input ) {
+    if ( 'personas' === get_post_type() ) {
+        return __( 'Ingresar nombre y apellido', 'your_textdomain' );
+    }
+
+    return $input;
+}
+
+
   register_post_type( 'Sponsors',
   // CPT Options
   array(
@@ -83,33 +98,32 @@ function create_posttype() {
   add_action( 'init', 'create_posttype' );
 
 
+
+
+
+
   // Let us create Taxonomy for Custom Post Type
-        add_action( 'init', 'crunchify_create_deals_custom_taxonomy', 0 );
- 
-        //create a custom taxonomy name it "type" for your posts
-        function crunchify_create_deals_custom_taxonomy() {
-        
-          $labels = array(
-            'name' => _x( 'Grupos', 'taxonomy general name' ),
-            'singular_name' => _x( 'Grupo', 'taxonomy singular name' ),
-            'search_items' =>  __( 'Buscar Grupos' ),
-            'all_items' => __( 'Todos los Grupos' ),
-            'parent_item' => __( 'Parent Grupo' ),
-            'parent_item_colon' => __( 'Parent Grupo:' ),
-            'edit_item' => __( 'Editar Grupo' ), 
-            'update_item' => __( 'Update Grupo' ),
-            'add_new_item' => __( 'Agregar nuevo grupo' ),
-            'new_item_name' => __( 'Nuevo Grupo' ),
-            'menu_name' => __( 'Grupos' ),
-          ); 	
-        
-          register_taxonomy('grupos',array('personas'), array(
-            'hierarchical' => true,
-            'labels' => $labels,
-            'show_ui' => true,
-            'show_admin_column' => true,
-            'query_var' => true,
-            'rewrite' => array( 'slug' => 'grupo' ),
-          ));
-        }
-  
+  add_action( 'init', 'add_custom_taxonomy', 0 );
+  function add_custom_taxonomy() {
+  register_taxonomy('grupos', 'personas', array(
+    'hierarchical' => true,
+    'labels' => array(
+      'name' => _x( 'Grupo', 'taxonomy general name' ),
+      'singular_name' => _x( 'Grupo', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Buscar grupo' ),
+      'all_items' => __( 'Todos los grupos' ),
+      'parent_item' => __( 'Parent Advert Tag' ),
+      'parent_item_colon' => __( 'Parent Advert Tag:' ),
+      'edit_item' => __( 'Editar grupo' ),
+      'update_item' => __( 'Actualizar grupo' ),
+      'add_new_item' => __( 'Agregar nuevo grupo' ),
+      'new_item_name' => __( 'Nuevo nombre de grupo' ),
+      'menu_name' => __( 'Grupos' ),
+    ),
+    'rewrite' => array(
+      'slug' => 'advert-tags',
+      'with_front' => false,
+      'hierarchical' => true
+    ),
+  ));
+    }
