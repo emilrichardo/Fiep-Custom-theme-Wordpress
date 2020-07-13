@@ -84,13 +84,14 @@ wp-content/index.php
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/themes/*
-!wp-content/themes/comasa-dev
-!wp-content/themes/comasa-wp
+!wp-content/themes/sinatra
+!wp-content/themes/fiep
 wp-content/mu-plugins/
 wp-content/wp-cache-config.php
 #wp-content/plugins/
 wp-content/languages/
 wp-content/resources/
+wp-content/plugins
 
 wp-includes/
 
