@@ -20,7 +20,13 @@
 
 <div class="row justify-content-center my-5">
 	<div class="col-md-10">
-		<?php echo get_post_field('post_content', $post_id); ?>
+	<?php
+			//do_action( 'sinatra_before_singular' );
+
+			do_action( 'sinatra_content_singular' );
+
+			//do_action( 'sinatra_after_singular' );
+			?>
 	</div>
 </div>
 	

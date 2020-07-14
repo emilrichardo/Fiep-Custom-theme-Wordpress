@@ -230,7 +230,8 @@ section.feature-home .img-feature{
     }
 
     section.feature-home .img-feature img{
-        height: 100%;
+        width: 100%;
+        height: auto;
     }
 }
 
