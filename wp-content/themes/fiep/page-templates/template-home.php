@@ -21,11 +21,11 @@
 
 
 <?php  get_template_part( 'template-parts/content/comite', sinatra_get_article_feed_layout() ); ?>
-<div class="mt-0 text-center bg-dark pb-5">
+<!-- <div class="mt-0 text-center bg-dark pb-5">
 	<hr>
         <a href="#" class="btn btn-outline-light btn-lg ml-md-5">Estructura completa</a>
     <a href="#" class="btn btn-outline-light btn-lg">Representantes Provinciales</a>
-</div>
+</div> -->
 
 <!-- cursos -->
 <?php  get_template_part( 'template-parts/content/cursos-home', sinatra_get_article_feed_layout() ); ?>	

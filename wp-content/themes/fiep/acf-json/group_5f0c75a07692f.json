@@ -64,6 +64,25 @@
             "append": ""
         },
         {
+            "key": "field_5f0d09ed810b0",
+            "label": "Lugar",
+            "name": "lugar",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5f0ce1fe75f0f",
             "label": "Resumen",
             "name": "resumen",
@@ -115,5 +134,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1594679979
+    "modified": 1594690237
 }
