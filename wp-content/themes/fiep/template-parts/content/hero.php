@@ -6,7 +6,7 @@
         'post_type'           => 'post',
         'post_status'         => 'publish',
         'posts_per_page'      => 1,	
-        //'post__in'            => get_option( 'sticky_posts' ),
+        'post__in'            => get_option( 'sticky_posts' ),
         'ignore_sticky_posts' => 1,	
     )); 
     ?>	
