@@ -57,6 +57,7 @@ while ( $sinatra_posts->have_posts() ) :
 
 	// Background images HTML markup.
 	$sinatra_hero_bgs_html .= '<div class="hover-slide-bg cover-header" data-background="' . get_the_post_thumbnail_url( get_the_ID(), 'full' ) . '"></div>';
+	
 
 	// Post items HTML markup.
 	ob_start();
@@ -64,7 +65,7 @@ while ( $sinatra_posts->have_posts() ) :
 	<div class="col-xs-<?php echo esc_attr( 12 / $sinatra_args['posts_per_page'] ); ?> hover-slider-item-wrapper<?php echo esc_attr( $sinatra_hero_readmore ); ?>">
 
 		<div class="hover-slide-item">
-			<div class="slide-inner">
+			<div class="slide-inner">				
 
 				<?php
 				//campos congreso
@@ -78,7 +79,7 @@ while ( $sinatra_posts->have_posts() ) :
 					<h3 class="h1"><a href="<?php echo esc_url( sinatra_entry_get_permalink() ); ?>"><?php the_title(); ?></a></h3>					
 				<?php } ?>
 			
-				<?php if($fecha) { echo '<h4 class="text-white">' . $tema . '</h4>';}?>
+				<?php if($fecha) { echo '<h4 class="h3	text-white">' . $tema . '</h4>';}?>
 
 				<?php if ( isset( $sinatra_hero_elements['meta'] ) && $sinatra_hero_elements['meta'] ) { ?>
 					<div class="entry-meta">
