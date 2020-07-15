@@ -1,6 +1,5 @@
 :root{
     --white: #fff;
-    --primary: #3756E6;
     --primary-light: #3d5ef3;
     --primary-dark: #273fa8;
     --dark: rgb(27, 27, 27);
@@ -111,6 +110,13 @@ a, a:hover, *:hover{
 .hero-home *{
     color: var(--white);
 }
+
+
+.img-hero{
+    max-height: 600px;
+    overflow: hidden;
+}
+
 .overlay-bg{
     position: absolute;
     width: 100vw;
@@ -159,7 +165,10 @@ a, a:hover, *:hover{
 .page-template-template-about .entry-media.thumbnail{
     display: none;
 }
-
+.page-header.si-page-title-has-bg-img:after{
+background-color: #1d2d75!important;
+opacity: .95!important;
+}
 
 
 /*main*/
