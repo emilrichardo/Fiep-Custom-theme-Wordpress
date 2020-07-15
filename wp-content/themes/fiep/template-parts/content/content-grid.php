@@ -27,7 +27,7 @@
 			)); 
 			?>			
 
-			<h2 class="h1   ">Publicaciones</h2>
+			<h2 class="h1   ">Blog</h2>
 
 			<?php if ( $grid_content->have_posts() ) : ?>
 				<div class="si-flex-row">				
