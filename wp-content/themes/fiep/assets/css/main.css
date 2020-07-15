@@ -36,6 +36,9 @@ body{
     margin-top: 24px;
 }
 
+a{
+    text-decoration: none;
+}
 
 .tag{
     background-color:var(--primary)!important; 
@@ -165,11 +168,7 @@ body{
 }
 
 
-.card-news .post-category{
-   
-    padding-left: 10px;
-    position: absolute;
-    top: 20px;
+.card-news .post-category{       
     z-index: 2;
 }
 
@@ -182,6 +181,7 @@ body{
 
 .card-news .cat-links:hover{
     background-color: var(--primary-light); 
+    text-decoration: none;
 }
 
 .card-news .cat-links a{
@@ -221,11 +221,7 @@ section.feature-home .img-feature{
         padding: 0 8vw;
     }
     section.feature-home .img-feature{
-        position: absolute;
-        right:0px;
-        top: -40px;
-        max-width: 50vw;
-        height: 80vh;
+       
         
     }
 
@@ -328,5 +324,7 @@ section.cursos *{
 .image-cursos{    
    margin-top: -55px;
     z-index: 0;
+    width: 100%;
 
 }
+

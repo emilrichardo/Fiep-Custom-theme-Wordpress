@@ -14,14 +14,14 @@ if( $cursos_home): ?>
             // Setup this post for WP functions (variable must be named $post).
             setup_postdata($post); ?>
                 <div class="col-xs-12 col-md-3">
-                    <a href="<?php the_permalink(); ?>">
+                   <!--  <a href="<?php // the_permalink(); ?>"> -->
                         <div class="card-cursos">
                         <div class="img-feature">
                             <?php echo get_the_post_thumbnail( $featured_post->ID, 'large' ); ?>
                         </div>
                             <h5 class="h5"><?php the_title(); ?></h5>                       
                         </div>
-                    </a>					
+                    <!-- </a> -->					
 				</div>
              <?php endforeach; ?>
              </div>

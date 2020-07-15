@@ -21,11 +21,11 @@
 
 
 <?php  get_template_part( 'template-parts/content/comite', sinatra_get_article_feed_layout() ); ?>
-<!-- <div class="mt-0 text-center bg-dark pb-5">
+<div class="mt-0 text-center bg-dark pb-5">
 	<hr>
         <a href="#" class="btn btn-outline-light btn-lg ml-md-5">Estructura completa</a>
     <a href="#" class="btn btn-outline-light btn-lg">Representantes Provinciales</a>
-</div> -->
+</div>
 
 <!-- cursos -->
 <?php  get_template_part( 'template-parts/content/cursos-home', sinatra_get_article_feed_layout() ); ?>	
@@ -36,12 +36,8 @@
 
 		<?php do_action( 'sinatra_before_content' ); ?>
 
-		<main id="content" class="site-content" role="main"<?php sinatra_schema_markup( 'main' ); ?>>
-		
+		<main id="content" class="site-content" role="main"<?php sinatra_schema_markup( 'main' ); ?>>		
 			<?php get_template_part( 'template-parts/content/content-grid', sinatra_get_article_feed_layout() ); ?>	
-			
-		
-
 		</main><!-- #content .site-content -->
 
 		<?php do_action( 'sinatra_after_content' ); ?>
