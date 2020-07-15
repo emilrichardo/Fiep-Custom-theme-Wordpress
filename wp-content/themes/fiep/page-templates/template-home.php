@@ -15,6 +15,9 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v7.0" nonce="hhQWLx64"></script>
 
+
+<?php  get_template_part( 'template-parts/content/hero', sinatra_get_article_feed_layout() ); ?>
+
 <!-- feture post -->
 <?php  get_template_part( 'template-parts/content/feature-post', sinatra_get_article_feed_layout() ); ?>
 
