@@ -34,9 +34,9 @@
 		elseif ( is_search() ) :
 
 			printf(
-				'<p>' . wp_kses( __( 'Lo siento, no se han encontrado resultados. Por favor, inténtalo de nuevo con palabras clave diferentes.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
+				'<h4>' . wp_kses( __( 'Lo siento, no se han encontrado resultados. Por favor, inténtalo de nuevo con palabras clave diferentes.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</h4>'
 			);
-			get_search_form();
+			//get_search_form();
 
 		elseif ( is_category() ) :
 
