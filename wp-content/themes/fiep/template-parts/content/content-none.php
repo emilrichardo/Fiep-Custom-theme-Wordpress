@@ -34,26 +34,26 @@
 		elseif ( is_search() ) :
 
 			printf(
-				'<p>' . wp_kses( __( 'Sorry, no results were found. Please try again with different keywords.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
+				'<p>' . wp_kses( __( 'Lo siento, no se han encontrado resultados. Por favor, inténtalo de nuevo con palabras clave diferentes.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
 			);
 			get_search_form();
 
 		elseif ( is_category() ) :
 
 			printf(
-				'<p>' . wp_kses( __( 'There aren&rsquo;t any posts currently published in this category.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
+				'<p>' . wp_kses( __( 'Actualmente no hay publicaciones publicadas en esta categoría.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
 			);
 
 		elseif ( is_tax() ) :
 
 			printf(
-				'<p>' . wp_kses( __( 'There aren&rsquo;t any posts currently published under this taxonomy.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
+				'<p>' . wp_kses( __( 'Actualmente no hay publicaciones publicadas en esta categoría..', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
 			);
 
 		elseif ( is_tag() ) :
 
 			printf(
-				'<p>' . wp_kses( __( 'There aren&rsquo;t any posts currently published under this tag.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
+				'<p>' . wp_kses( __( 'Actualmente no hay publicaciones publicadas en esta etiqueta.', 'sinatra' ), sinatra_get_allowed_html_tags() ) . '</p>'
 			);
 
 		else :
