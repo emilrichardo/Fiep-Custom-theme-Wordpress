@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$sinatra_title_icon = sinatra_get_svg( array( 'icon' => $sinatra_title_icon ) );
 	?>
 
-	<<?php echo tag_escape( $sinatra_tag ); ?> class="entry-title"<?php sinatra_schema_markup( 'headline' ); ?>>
+	<<?php echo tag_escape( $sinatra_tag ); ?> class="entry-title h5"<?php sinatra_schema_markup( 'headline' ); ?>>
 		<?php
 		echo sprintf(
 			wp_kses_post( $sinatra_title_string ),
