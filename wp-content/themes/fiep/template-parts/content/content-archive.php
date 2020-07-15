@@ -11,7 +11,7 @@
 				
 				?>
 			
-				<div class="col-xs-12 col-md-4 mb-5">	
+				<div class="col-xs-12 col-md-4 mb-1">	
 					<div class="si-entry-content-wrapper card-news">					
 						<?php 
 						if ( sinatra_option( 'blog_horizontal_post_categories' ) ) {
