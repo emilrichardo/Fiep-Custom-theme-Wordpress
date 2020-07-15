@@ -171,6 +171,12 @@ opacity: .95!important;
 }
 
 
+.post-nav{
+    border-top: solid 1px #eeee;
+    margin-top: 180px!important;
+    padding-top: 32px;
+}
+
 /*main*/
 .site-main{}
 /* .site-main:before{
