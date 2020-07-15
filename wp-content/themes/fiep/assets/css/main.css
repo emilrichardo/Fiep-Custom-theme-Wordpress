@@ -36,8 +36,8 @@ body{
     margin-top: 24px;
 }
 
-a{
-    text-decoration: none;
+a, a:hover, *:hover{
+    text-decoration: none!important;
 }
 
 .tag{
@@ -328,3 +328,7 @@ section.cursos *{
 
 }
 
+/* woocommerce*/
+.woocommerce form .form-row{
+    display: block!important;
+}
