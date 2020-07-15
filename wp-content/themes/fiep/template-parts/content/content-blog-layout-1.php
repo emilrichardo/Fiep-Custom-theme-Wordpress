@@ -11,9 +11,10 @@
 
 ?>
 
+<div class="col-xs-12 col-md-4 mb-1">
 <?php do_action( 'sinatra_before_article' ); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'sinatra-article' ); ?><?php sinatra_schema_markup( 'article' ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'sinatra-article ' ); ?><?php sinatra_schema_markup( 'article' ); ?>>
 
 	<?php
 	$sinatra_blog_entry_format = get_post_format();
@@ -24,18 +25,21 @@
 
 		$sinatra_blog_entry_elements = sinatra_get_blog_entry_elements();
 		
-		echo '<div class="si-blog-entry-content">';
+		echo '<div class="si-entry-content-wrapper card-news">';
 
-		if ( ! empty( $sinatra_blog_entry_elements ) ) {
-			foreach ( $sinatra_blog_entry_elements as $sinatra_element ) {
-				get_template_part( 'template-parts/entry/entry', $sinatra_element );
-			}
-		}
+		
+		if ( sinatra_option( 'blog_horizontal_post_categories' ) ) {
+			get_template_part( 'template-parts/entry/entry-category' );					}
+		get_template_part( 'template-parts/entry/entry-thumbnail' );
+		echo get_the_date();
+		get_template_part( 'template-parts/entry/entry-header' );	
+						
 
 		echo '</div>';
 	}
 	?>
-
+	
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <?php do_action( 'sinatra_after_article' ); ?>
+</div>

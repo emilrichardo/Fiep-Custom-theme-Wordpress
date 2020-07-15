@@ -149,6 +149,12 @@ a, a:hover, *:hover{
 } */
 
 /*cards news*/
+
+.blog .site-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .card-news{
     margin-top: 54px;
     background-color: var(--white);
