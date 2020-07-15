@@ -55,7 +55,7 @@
 				<section class="sharing-box content-margin content-background clearfix">								
 					<div class="share-button-wrapper text-right">
 						<a target="_blank" class="share-button share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $postUrl; ?>" title="Share on Facebook"><i class="fa fa-facebook-square  mt-0 h3 text-primary"></i></a>   
-						<a class="whatsapp-web" href="https://web.whatsapp.com/send/<?php echo $postUrl; ?>"><i class="fa ml-2 fa-whatsapp h3 mt-0  text-success"></i></a>     
+						 
 					</div>
 				</section>
 
