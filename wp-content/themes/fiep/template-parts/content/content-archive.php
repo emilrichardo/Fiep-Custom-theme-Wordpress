@@ -15,7 +15,7 @@
 					<div class="si-entry-content-wrapper card-news">					
 						<?php 
 						if ( sinatra_option( 'blog_horizontal_post_categories' ) ) {
-							get_template_part( 'template-parts/entry/entry-category' );					}
+						get_template_part( 'template-parts/entry/entry-category' );					}
 						get_template_part( 'template-parts/entry/entry-thumbnail' );
 						echo get_the_date();
 						get_template_part( 'template-parts/entry/entry-header' );	

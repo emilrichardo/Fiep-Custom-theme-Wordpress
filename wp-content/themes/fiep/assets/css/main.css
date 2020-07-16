@@ -177,6 +177,11 @@ opacity: .95!important;
     padding-top: 32px;
 }
 
+
+.category-biblioteca-digital .si-widget > ul > .cat-item:not(.current-cat)
+{
+    display: none;
+}
 /*main*/
 .site-main{}
 /* .site-main:before{
@@ -191,7 +196,7 @@ opacity: .95!important;
 
 /*cards news*/
 
-.blog .site-content{
+.blog .site-content, .search .site-content{
     display: flex;
     flex-wrap: wrap;
 }
@@ -249,7 +254,7 @@ opacity: .95!important;
 }
 
 
-
+.post-thumb{}
 
 /*section feature*/
 section.feature-home{
