@@ -27,12 +27,14 @@
 		
 		echo '<div class="si-entry-content-wrapper card-news">';
 
-		
+		$tema = get_field('tema');
+
 		if ( sinatra_option( 'blog_horizontal_post_categories' ) ) {
 			get_template_part( 'template-parts/entry/entry-category' );					}
 		get_template_part( 'template-parts/entry/entry-thumbnail' );
 		echo get_the_date();
 		get_template_part( 'template-parts/entry/entry-header' );	
+		echo $tema;	
 						
 
 		echo '</div>';

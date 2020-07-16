@@ -8,6 +8,7 @@
 			<?php if ( have_posts() ) : ?>
 				<div class="si-flex-row">				
 				<?php while ( have_posts() ) : the_post();
+				$tema = get_field('tema');
 				
 				?>
 			
@@ -18,7 +19,9 @@
 						get_template_part( 'template-parts/entry/entry-category' );					}
 						get_template_part( 'template-parts/entry/entry-thumbnail' );
 						echo get_the_date();
-						get_template_part( 'template-parts/entry/entry-header' );	
+						get_template_part( 'template-parts/entry/entry-header' );
+						echo $tema;	
+
 						?>	
 
 <?php 
