@@ -243,7 +243,8 @@ opacity: .95!important;
 .card-news  .post-thumb{
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 10ppx;
+    margin-bottom: 10px;
+    background-color: #eee;
 }
 
 .card-news  .post-thumb img{
