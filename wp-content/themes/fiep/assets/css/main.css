@@ -87,6 +87,15 @@ a, a:hover, *:hover{
     transition: all .3s ease-in-out;
 }
 
+
+@media (max-width:768px){
+    .sinatra-logo  img {
+        max-height: 80px!important;
+    }
+}
+
+
+
 .site-header.effect .sinatra-logo img{
     max-height: 80px;
     
@@ -117,6 +126,8 @@ a, a:hover, *:hover{
     overflow: hidden;
 }
 
+
+
 .overlay-bg{
     position: absolute;
     width: 100vw;
@@ -139,6 +150,11 @@ a, a:hover, *:hover{
    
 }
 
+@media (max-width:768px){
+    .inner-hero .caption__hero h5.h4{
+        font-size: 18px;
+    }
+}
 
 
 
