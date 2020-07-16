@@ -24,8 +24,6 @@ if ( is_single() ) {
 
 do_action( 'sinatra_before_entry_thumbnail' );
 
-
-
 if ( has_post_thumbnail() ) {
 	get_template_part( 'template-parts/entry/format/media', $sinatra_post_format );
 }
