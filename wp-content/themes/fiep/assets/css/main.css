@@ -273,6 +273,8 @@ opacity: .95!important;
     object-position: center;
     width: 100%;
     max-width: none;
+    margin-left: 0px;
+    margin-right: 0px;
     
     
 }
