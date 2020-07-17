@@ -21,7 +21,7 @@
 				'post-type' => 'post',
 				'posts_per_page' => 3,
 				'meta_key' => '_thumbnail_id',					
-				'category__not_in' => 'uncategorized',
+				'category__not_in' => 'biblioteca-digital',
 				'ignore_sticky_posts' => 1		
     			
 			)); 
