@@ -260,19 +260,21 @@ opacity: .95!important;
 }
 
 .card-news  .post-thumb{
-    border-radius: 5px;
-    overflow: hidden;
+    border-radius: 5px;    
     margin-bottom: 10px;
-    background-color: #eee;
-}
+    background-color: #eee;    
+ }
 
 .card-news  .post-thumb img{
-    height: 250px;
-    width: auto;
-    min-width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    height: 280px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
     max-width: none;
-    margin-left: 0;
-    margin-right: 0;
+    
+    
 }
 
 
