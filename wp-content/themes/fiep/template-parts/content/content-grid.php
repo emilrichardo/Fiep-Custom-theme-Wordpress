@@ -21,13 +21,13 @@
 				'post-type' => 'post',
 				'posts_per_page' => 3,
 				'meta_key' => '_thumbnail_id',					
-				'category__not_in' => 'biblioteca-digital',
+				'category__not_in' => '24',
 				'ignore_sticky_posts' => 1		
     			
 			)); 
 			?>			
 
-			<h2 class="h1   ">Blog</h2>
+			<h2 class="h1 blog-title">Blog</h2>
 
 			<?php if ( $grid_content->have_posts() ) : ?>
 				<div class="si-flex-row">				
