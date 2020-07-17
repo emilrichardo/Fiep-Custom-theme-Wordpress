@@ -81,17 +81,17 @@ function custom_enter_title( $input ) {
 }
 
 
-  register_post_type( 'Sponsors',
+  register_post_type( 'Cursos',
   // CPT Options
   array(
     'labels' => array(
       'menu_icon'   => 'http://site.com/wp-content/themes/theme_name/i/icon_16x16.png',
-     'name' => __( 'Sponsors' ),     
-     'singular_name' => __( 'Sponsor' )
+     'name' => __( 'Cursos' ),     
+     'singular_name' => __( 'Curso' )
     ),
     'public' => true,
     'has_archive' => false,
-    'rewrite' => array('slug' => 'sponsor'),
+    'rewrite' => array('slug' => 'curso'),
    )
   );
   }
