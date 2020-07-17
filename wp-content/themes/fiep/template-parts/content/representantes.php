@@ -21,7 +21,7 @@
                 $foto = get_field('foto_de_perfil');
                 $email = get_field('email');
             ?>
-            <div class="col-12 col-md-4">
+            <div class="col-6 col-md-4">
                 <div class="card-people">
                     <div class="row align-items-center">
                         <div class="col-md-4">
