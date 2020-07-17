@@ -280,6 +280,11 @@ opacity: .95!important;
 
 .post-thumb{}
 
+
+.col-md.flex-basis-auto.start-sm, .col-md.flex-basis-auto.end-sm{
+    width: auto!important;
+}
+
 /*section feature*/
 section.feature-home{
     position: relative;
