@@ -4,19 +4,18 @@
 <?php $comite = new WP_Query( 
     array( 
         'post_type' => 'personas', 
-        'posts_per_page' => 4, 
-        'grupos' => 'comite',
+        'posts_per_page' => 7, 
+        'grupos' => 'secciones-nacionales',
         'order'   => 'ASC'
     ) 
 ); 
 ?>
 
-<section id="estructura" class="bg-dark text-light py-5">
+<section id="estructura" class="text-light py-5">
     <div class="container">
     <?php if ( $comite->have_posts() ) : ?>
         <div class="heading py-1 text-center">
-            <h5>Estructura Actual de F.I.E.P. Argentina</h5>
-            <h2 class="h1 text-white">Comité Ejecutivo Nacional</h2>
+            <h2 class="h1">Secciones Nacionales</h2>
         </div>      
        
         
@@ -34,8 +33,8 @@
                     </div>
                     <div class="text-card">
                         <h6><?php echo $cargo; ?></h6>   
-                        <h4><?php echo get_the_title(); ?></h4>                       
-						<small class="mt-0"><?php echo $email; ?></small>    						
+                        <h4><?php echo get_the_title(); ?></h4>   
+						<small class="mt-0 text-dark"><?php echo $email; ?></small>    						
                     </div>
                 </div>
             </div><!-- card-profile-colun -->     

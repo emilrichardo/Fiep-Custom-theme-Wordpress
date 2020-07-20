@@ -37,6 +37,7 @@
 
 
 <?php  get_template_part( 'template-parts/content/comite', sinatra_get_article_feed_layout() ); ?>
+<?php  get_template_part( 'template-parts/content/secciones-nacionales', sinatra_get_article_feed_layout() ); ?>
 <?php  get_template_part( 'template-parts/content/representantes', sinatra_get_article_feed_layout() ); ?>
 
 

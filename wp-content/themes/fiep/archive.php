@@ -15,6 +15,8 @@
 
 <div class="si-container">
 
+	<?php do_action( 'sinatra_sidebar' ); ?>
+	
 	<div id="primary" class="content-area">
 
 		<?php do_action( 'sinatra_before_content' ); ?>
@@ -29,7 +31,7 @@
 
 	</div><!-- #primary .content-area -->
 
-	<?php do_action( 'sinatra_sidebar' ); ?>
+	
 
 </div><!-- END .si-container -->
 

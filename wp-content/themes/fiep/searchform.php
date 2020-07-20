@@ -35,19 +35,44 @@ $categoria = get_query_var('category_name' );
 	</div>
 </form>
 
+
+
+
 <?php
-	
-    $term = get_queried_object();
+	$term = get_queried_object();
     $children = get_terms( $term->taxonomy, array(
         'parent'    => $term->term_id,
-        'hide_empty' => false
-    ) );
+        'hide_empty' => false,
+	) );
 
     if ( $children ) { 
 		echo '<hr>';
         foreach( $children as $subcat )
-        {
-            echo '<a href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . '</a>';
-        }
-    }
+        {	
+			if($subcat->count != 0){
+				echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
+			}
+		}
+    }else{
+		$parent = get_term( $term->parent );
+		$children = get_terms( $term->taxonomy, array(
+			'parent'    => $parent->term_id,
+			'hide_empty' => false
+		) );
+		
+		if ($children ){
+			echo '<hr>';
+			foreach( $children as $subcat )
+			{
+				if($subcat->count != 0){
+					if($term->term_id == $subcat->term_id){
+						echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';
+					}else{
+						echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
+					}	
+				}
+			}	
+		}
+		
+	}
 ?>
