@@ -12,16 +12,17 @@ if( $cursos_home): ?>
 			<div class="si-flex-row justify-content-center">
             <?php foreach( $cursos_home as $post ):
             // Setup this post for WP functions (variable must be named $post).
-            setup_postdata($post); ?>
-                <div class="col-xs-12 col-md-3">
-                   <!--  <a href="<?php // the_permalink(); ?>"> -->
+            setup_postdata($post);  ?>
+         
+                <div class="col-xs-12 col-md-4">
+                  <a href="<?php the_permalink(); ?>"> 
                         <div class="card-cursos">
                         <div class="img-feature">
-                            <?php echo get_the_post_thumbnail( $featured_post->ID, 'large' ); ?>
+                        <img src="<?php echo  the_field('imagen_de_curso'); ?>" alt="">
                         </div>
                             <h5 class="h5"><?php the_title(); ?></h5>                       
                         </div>
-                    <!-- </a> -->					
+                    </a>					
 				</div>
              <?php endforeach; ?>
              </div>
