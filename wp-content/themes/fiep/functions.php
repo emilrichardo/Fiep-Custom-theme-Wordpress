@@ -82,6 +82,10 @@ function create_post_type_cursos() {
            'menu_position'  => 4,
            'menu_icon'      => 'dashicons-list-view',
            'has_archive' => true,
+           'rewrite' => array('slug' => 'cursos'),
+           'show_in_rest' => true,
+            //'supports' => array('editor')
+           
              );
   register_post_type( 'cursos', $args);
 }

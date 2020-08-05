@@ -184,11 +184,14 @@ a, a:hover, *:hover{
 .page-template-template-about .entry-media.thumbnail{
     display: none;
 }
-.page-header.si-page-title-has-bg-img:after{
+.post-template-default  .page-header.si-page-title-has-bg-img:after{
 background-color: #1d2d75!important;
-opacity: .95!important;
+opacity: .85!important;
 }
 
+.cursos-template-default .page-header.si-page-title-has-bg-img:after{
+    display: none;
+}
 
 .post-nav{
     border-top: solid 1px #eeee;
