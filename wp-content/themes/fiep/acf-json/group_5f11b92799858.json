@@ -66,6 +66,25 @@
             "maxlength": ""
         },
         {
+            "key": "field_5f2c42f06daba",
+            "label": "Botón agregar a carrito",
+            "name": "agregar",
+            "type": "text",
+            "instructions": "Agregar shortcode de boton",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5f11bb3cbe241",
             "label": "Descripcion",
             "name": "descripcion",
@@ -423,5 +442,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1596732854
+    "modified": 1596736420
 }
