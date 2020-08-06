@@ -42,28 +42,6 @@
             "endpoint": 0
         },
         {
-            "key": "field_5f087dc769c09",
-            "label": "Cursos home",
-            "name": "cursos_home",
-            "type": "post_object",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "page"
-            ],
-            "taxonomy": "",
-            "allow_null": 0,
-            "multiple": 1,
-            "return_format": "object",
-            "ui": 1
-        },
-        {
             "key": "field_5f08a0f17e992",
             "label": "Imagen cursos",
             "name": "imagen_cursos",
@@ -105,5 +83,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1594493665
+    "modified": 1596575062
 }

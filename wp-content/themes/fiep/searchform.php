@@ -19,8 +19,11 @@ $sinatra_post_type = apply_filters( 'sinatra_search_post_type', 'all' );
 $sinatra_post_type = 'all' !== $sinatra_post_type ? '<input type="hidden" name="post_type" value="' . esc_attr( $sinatra_post_type ) . '" />' : '';
 $categoria = get_query_var('category_name' );
 
-
-
+$category = get_queried_object();
+if($category->parent != 0){
+	 $parent = get_term( $category->parent );
+	 $categoria = $parent->name;	
+}
 ?>
 
 <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( 'categoria/'.$categoria.'/' ) ); ?>">
@@ -35,44 +38,4 @@ $categoria = get_query_var('category_name' );
 	</div>
 </form>
 
-
-
-
-<?php
-	$term = get_queried_object();
-    $children = get_terms( $term->taxonomy, array(
-        'parent'    => $term->term_id,
-        'hide_empty' => false,
-	) );
-
-    if ( $children ) { 
-		echo '<hr>';
-        foreach( $children as $subcat )
-        {	
-			if($subcat->count != 0){
-				echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
-			}
-		}
-    }else{
-		$parent = get_term( $term->parent );
-		$children = get_terms( $term->taxonomy, array(
-			'parent'    => $parent->term_id,
-			'hide_empty' => false
-		) );
-		
-		if ($children ){
-			echo '<hr>';
-			foreach( $children as $subcat )
-			{
-				if($subcat->count != 0){
-					if($term->term_id == $subcat->term_id){
-						echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';
-					}else{
-						echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
-					}	
-				}
-			}	
-		}
-		
-	}
-?>
+ 

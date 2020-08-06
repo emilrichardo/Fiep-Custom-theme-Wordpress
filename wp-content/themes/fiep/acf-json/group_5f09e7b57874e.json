@@ -1,12 +1,37 @@
 {
     "key": "group_5f09e7b57874e",
-    "title": "Congresos",
+    "title": "Evento",
     "fields": [
         {
             "key": "field_5f09e7de0b175",
-            "label": "Lugar",
+            "label": "Plataforma",
             "name": "lugar",
-            "type": "text",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>": "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>",
+                "Zoom": "Zoom"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5f23005d49f95",
+            "label": "Enlace",
+            "name": "enlace",
+            "type": "url",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,10 +41,7 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "placeholder": ""
         },
         {
             "key": "field_5f09e7fc0b176",
@@ -58,6 +80,65 @@
             "maxlength": "",
             "rows": "",
             "new_lines": ""
+        },
+        {
+            "key": "field_5f22d9350fffe",
+            "label": "Speaker",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f22d89d2619f",
+            "label": "Speakers",
+            "name": "speakers",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5f22de4423d9c",
+                    "label": "Speaker",
+                    "name": "speacker",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_5f22db06e42e0"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
         }
     ],
     "location": [
@@ -65,7 +146,7 @@
             {
                 "param": "post_category",
                 "operator": "==",
-                "value": "category:congresos"
+                "value": "category:webinar"
             }
         ]
     ],
@@ -77,5 +158,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1594484939
+    "modified": 1596134224
 }
