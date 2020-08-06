@@ -20,8 +20,7 @@
     <?php while ( $cursos_list->have_posts() ) : $cursos_list->the_post();
         $fecha = get_field('fecha');
         $lugar = get_field('lugar');
-        $tema = get_field('tema');
-        $image = get_the_post_thumbnail_url( $cursos_list->ID, 'large' );
+        $tema = get_field('tema');        
         ?>
                
          
@@ -29,10 +28,13 @@
     
                   <a href="<?php the_permalink(); ?>"> 
                         <div class="card-cursos">
-                        <div class="img-feature">
-                            <img class="w-100 shadow" src="<?php echo $image ; ?>" alt="<?php the_title(); ?>"> 
-                        </div>
-                            <h5 class="h5"><?php the_title(); ?></h5>                       
+                        <?php 
+                            get_template_part( 'template-parts/entry/entry-category' );
+                            get_template_part( 'template-parts/entry/entry-thumbnail' );
+                            get_template_part( 'template-parts/entry/entry-header' );
+                         ?>                            
+                            <h5><?php echo $fecha; ?></h5>                     
+                                            
                         </div>
                     </a>					
 				</div>
@@ -52,7 +54,7 @@
 		</div>
     </div>
 
-    </section>
+    
 <?php endif; ?>
-
+</section>
 

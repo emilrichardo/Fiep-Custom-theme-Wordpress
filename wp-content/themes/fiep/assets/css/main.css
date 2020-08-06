@@ -51,6 +51,10 @@ a, a:hover, *:hover{
     max-width: 1400px!important;
 }
 
+.btn-primary{
+    color: var(--white)!important;
+}
+
 /**/
 
 #sinatra-topbar>.si-container>.si-flex-row{
@@ -193,6 +197,10 @@ opacity: .85!important;
     display: none;
 }
 
+.cursos-template-default .page-header{
+    background-image: none!important;
+}
+
 .post-nav{
     border-top: solid 1px #eeee;
     margin-top: 180px!important;
@@ -204,6 +212,8 @@ opacity: .85!important;
 {
     display: none;
 }
+
+
 /*main*/
 .site-main{}
 /* .site-main:before{
@@ -268,7 +278,7 @@ opacity: .85!important;
     background-color: #eee;    
  }
 
-.card-news  .post-thumb img{
+ .post-thumb img{
     object-fit: cover;
     object-position: center center;
     height: 280px;

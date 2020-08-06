@@ -71,25 +71,7 @@ register_post_type( 'personas',
   );
 }
 
-function create_post_type_cursos() {
-    $args=  array(
-           'labels'         => array(
-           'name'           => __( 'Cursos' ),
-           'singular_name'  => __( 'Curso' )
-             ),
-           'public'         => true,
-           'supports'       => array('title','editor','thumbnail'),
-           'menu_position'  => 4,
-           'menu_icon'      => 'dashicons-list-view',
-           'has_archive' => true,
-           'rewrite' => array('slug' => 'cursos'),
-           'show_in_rest' => true,
-            //'supports' => array('editor')
-           
-             );
-  register_post_type( 'cursos', $args);
-}
-   
+
 
 
 // Hooking up our function to theme setup
@@ -131,4 +113,57 @@ function add_custom_taxonomy() {
       'hierarchical' => true
     ),
   ));
+
+  register_taxonomy('categoria_cursos', 'cursos', array(
+    'hierarchical' => true,
+    'labels' => array(
+      'name' => _x( 'Categoria de curso', 'taxonomy general name' ),
+      'singular_name' => _x( 'Categoría', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Buscar categoría' ),
+      'all_items' => __( 'Todas las categorias' ),
+      'parent_item' => __( 'Parent Advert Tag' ),
+      'parent_item_colon' => __( 'Parent Advert Tag:' ),
+      'edit_item' => __( 'Editar categoría' ),
+      'update_item' => __( 'Actualizar categoría' ),
+      'add_new_item' => __( 'Agregar nueva categoría' ),
+      'new_item_name' => __( 'Nuevo nombre de categoría' ),
+      'menu_name' => __( 'Categoría de curso' ),
+    ),
+    'rewrite' => array(
+      'slug' => 'advert-tags',
+      'with_front' => false,
+      'hierarchical' => true
+    ),
+  ));
+
+
     }
+
+    add_action( 'init', 'add_custom_taxonomy', 0 );
+  
+
+    function create_post_type_cursos() {
+      $args=  array(
+             'labels'         => array(
+              'name'           => __( 'Cursos' ),
+              'singular_name'  => __( 'Curso' ),              
+               ),
+             
+             'public'         => true,
+             'supports'       => array('title','editor','thumbnail'),
+             'menu_position'  => 4,
+             'menu_icon'      => 'dashicons-list-view',
+             'has_archive' => true,
+             'rewrite' => array('slug' => 'cursos'),
+             'show_in_rest' => true,
+              //'supports' => array('editor')
+             
+               );
+    register_post_type( 'cursos', $args);
+  }
+     
+ 
+
+
+
+  

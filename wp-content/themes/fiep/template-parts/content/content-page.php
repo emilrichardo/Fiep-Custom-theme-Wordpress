@@ -11,24 +11,23 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?><?php sinatra_schema_markup( 'article' ); ?>>
+
 
 <?php
 $postype_detail=get_post_type($post->ID);
 $template_part= get_template_part( 'template-parts/content/content-' .  $postype_detail);
 
 if ( isset( $template_part)) {
-
 	  get_template_part( 'template-parts/content/content-' .  $postype_detail);	
 }
 
 if ( sinatra_show_post_thumbnail() ) {
-	get_template_part( 'template-parts/entry/format/media', 'page' );
+	//get_template_part( 'template-parts/entry/format/media', 'page' );
 }
 
 		
 ?>
-
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?><?php sinatra_schema_markup( 'article' ); ?>>
 <div class="entry-content si-entry">
 
 	<?php
