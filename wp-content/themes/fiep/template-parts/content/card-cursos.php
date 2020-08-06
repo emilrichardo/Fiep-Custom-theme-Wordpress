@@ -15,7 +15,7 @@
           echo wp_kses_post('<h3 class="h2 mt-3">' . $precio . '</h3>');       
                 
         ?>
-        <a href="#" class="btn btn-primary mb-5">Comprar curso</a>
+        <a href="#" class="btn btn-primary btn-block mb-5">Comprar curso</a>
 
         <?php 
         if ($cupos){
