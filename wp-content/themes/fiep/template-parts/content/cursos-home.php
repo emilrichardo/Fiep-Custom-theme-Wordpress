@@ -4,8 +4,8 @@
         'post_type'           => 'cursos',
         'post_status'         => 'publish',
         'posts_per_page'      => 6,	
-        //'post__in'            => get_option( 'sticky_posts' ),
-       // 'ignore_sticky_posts' => 1,	
+        'post__in'            => get_option( 'sticky_posts' ),
+       'ignore_sticky_posts' => 1,	
     )); 
     ?>	
 
