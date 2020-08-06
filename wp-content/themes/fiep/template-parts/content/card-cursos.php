@@ -1,5 +1,6 @@
 <?php    
     $precio = get_field('precio_de_curso'); 
+    $agregar = get_field('agregar'); 
     $cupos = get_field_object('cupos'); 
     $cupos_value = get_field('cupos'); 
     $certificaciones = get_field('certificaciones');
@@ -15,7 +16,8 @@
           echo wp_kses_post('<h3 class="h2 mt-3">' . $precio . '</h3>');       
                 
         ?>
-        <a href="#" class="btn btn-primary mb-5">Comprar curso</a>
+        <?php echo do_shortcode( $agregar );?>
+        
 
         <?php 
         if ($cupos){

@@ -3,11 +3,74 @@
     "title": "Cursos",
     "fields": [
         {
+            "key": "field_5f2c3243c12c7",
+            "label": "Categoría de cursos",
+            "name": "categoria_de_cursos",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "categoria_cursos",
+            "field_type": "checkbox",
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "multiple": 0,
+            "allow_null": 0
+        },
+        {
+            "key": "field_5f2c29e6bfc2c",
+            "label": "Mostrar en home",
+            "name": "mostrar_home",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "off": "Off",
+                "on": "On"
+            },
+            "allow_null": 0,
+            "default_value": "off : Off",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
             "key": "field_5f2b76678acbd",
             "label": "Precio de curso",
             "name": "precio_de_curso",
             "type": "text",
             "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f2c42f06daba",
+            "label": "Botón agregar a carrito",
+            "name": "agregar",
+            "type": "text",
+            "instructions": "Agregar shortcode de boton",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -37,7 +100,7 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": "",
+            "rows": 4,
             "new_lines": ""
         },
         {
@@ -56,7 +119,7 @@
             "default_value": "",
             "placeholder": "",
             "maxlength": "",
-            "rows": "",
+            "rows": 2,
             "new_lines": ""
         },
         {
@@ -68,7 +131,26 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f2c065228ba9",
+            "label": "Fecha de apertura de inscripciones",
+            "name": "fecha_de_apertura",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -104,25 +186,6 @@
             "save_other_choice": 0
         },
         {
-            "key": "field_5f2c065228ba9",
-            "label": "Fecha de apertura de inscripciones",
-            "name": "fecha_de_apertura",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5f2c09786577e",
             "label": "Cupos",
             "name": "cupos",
@@ -131,7 +194,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -300,7 +363,7 @@
             "collapsed": "",
             "min": 0,
             "max": 0,
-            "layout": "table",
+            "layout": "row",
             "button_label": "",
             "sub_fields": [
                 {
@@ -360,7 +423,7 @@
     ],
     "menu_order": 0,
     "position": "acf_after_title",
-    "style": "seamless",
+    "style": "default",
     "label_placement": "top",
     "instruction_placement": "field",
     "hide_on_screen": [
@@ -379,5 +442,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1596726564
+    "modified": 1596736420
 }

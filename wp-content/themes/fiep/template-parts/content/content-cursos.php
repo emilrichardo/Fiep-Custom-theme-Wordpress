@@ -30,8 +30,8 @@
             //descripcion
             if ( $descripcion ) :
                 ?>
-                <div class="row justify-content-center align-items-center mb-5 mt-5">        
-                    <div class="col- 12 col-md-12 order-md-2 mt-md-5"><?php echo get_the_post_thumbnail($post_id , 'large', array( 'class' => 'w-100 rounded' )) ;?> </div>
+                <div class="row justify-content-center align-items-center mb-5 ">        
+                    <div class="col- 12 col-md-12  mt-md-5 mb-5"><?php echo get_the_post_thumbnail($post_id , 'large', array( 'class' => 'w-100 rounded' )) ;?> </div>
                     <div class="col-12 col-md-12"><h4 class="h5 mt-0"><?php echo esc_html( $descripcion ); ?></h3></div>
                 </div>
                 
