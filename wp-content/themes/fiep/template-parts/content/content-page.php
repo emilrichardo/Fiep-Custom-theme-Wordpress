@@ -15,15 +15,17 @@
 
 <?php
 $postype_detail=get_post_type($post->ID);
-$template_part= get_template_part( 'template-parts/content/content-' .  $postype_detail);
 
-if ( isset( $template_part)) {
-	  get_template_part( 'template-parts/content/content-' .  $postype_detail);	
+if($postype_detail != 'page'){
+	$template_part= get_template_part( 'template-parts/content/content-' .  $postype_detail);
+
+	if ( isset( $template_part)) {
+		get_template_part( 'template-parts/content/content-' .  $postype_detail);	
+	}
+
 }
 
-if ( sinatra_show_post_thumbnail() ) {
-	//get_template_part( 'template-parts/entry/format/media', 'page' );
-}
+
 
 		
 ?>
