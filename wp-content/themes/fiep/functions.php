@@ -154,7 +154,7 @@ function add_custom_taxonomy() {
              'menu_position'  => 4,
              'menu_icon'      => 'dashicons-list-view',
              'has_archive' => true,
-             'rewrite' => array('slug' => 'curso'),
+             'rewrite' => array('slug' => 'cursos'),
              'show_in_rest' => true,
               //'supports' => array('editor')
              

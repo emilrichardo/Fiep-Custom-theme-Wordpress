@@ -15,7 +15,7 @@
     ?>	
 
 <?php if ( $cursos_list->have_posts() ) : ?>
-    <section class="bg-light">
+    <section class="bg-light pb-5">
     
     <div class="si-container text-center">
 		<h2>Cursos en Línea</h2>
