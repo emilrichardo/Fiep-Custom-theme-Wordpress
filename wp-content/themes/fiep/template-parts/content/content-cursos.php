@@ -10,6 +10,8 @@
     $dirigido = get_field('dirigido_a');
     $programa = get_field('programa');     
     $disertantes = get_field('disertantes');
+    $acordion_datos = get_field('acordion_datos');
+    $auspiciantes = get_field('auspiciantes'); 
 ?>
 
     <div class="row justify-content-between">
@@ -37,8 +39,28 @@
                 
                 <?php
             endif;  
+
+            if ( $acordion_datos ) :
+                ?>                
+                
+                <?php get_template_part(  'template-parts/content/component-accordion' );
+                ?>  
+                
+                <?php
+            endif; 
+
+            if ( $auspiciantes ) :
+                ?>                
+                
+                <?php get_template_part(  'template-parts/content/card-auspiciantes' );
+                ?>  
+                
+                <?php
+            endif; 
             
-            get_template_part(  'template-parts/content/card-auspiciantes' );
+            
+
+           
 
             if ( $programa ) :
                 ?>
