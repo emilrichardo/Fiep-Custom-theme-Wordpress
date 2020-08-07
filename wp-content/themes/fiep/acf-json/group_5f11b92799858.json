@@ -410,6 +410,48 @@
                     "mime_types": ""
                 }
             ]
+        },
+        {
+            "key": "field_5f2dbf101f9ae",
+            "label": "Acordion de datos",
+            "name": "acordion_datos",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5f2dbf411f9af",
+                    "label": "Acordion",
+                    "name": "acordion",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_5f2dbdd6f1e46"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
         }
     ],
     "location": [
@@ -442,5 +484,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1596736420
+    "modified": 1596833658
 }
