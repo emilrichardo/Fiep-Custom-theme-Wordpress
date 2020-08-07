@@ -40,10 +40,14 @@
 					if($category_detail[0]->parent != 0){
 						$parent = get_term( $category_detail[0]->parent );
 					}else{
-						$parent = $category_detail[0]->name;
+						$parent = $category_detail[0]->slug;
+					}
+					
+					if($parent == 'webinar'){
+						get_template_part( 'template-parts/content/evento-webinar' , $sinatra_element );
 					}
 
-				//get_template_part( 'template-parts/content/evento-' .$parent , $sinatra_element );
+				
 				
 				get_template_part( 'template-parts/entry/entry', $sinatra_element );
 				do_action( 'sinatra_after_single_content' );
