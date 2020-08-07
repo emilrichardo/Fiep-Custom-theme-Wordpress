@@ -3,18 +3,18 @@
     $lugar = get_field('lugar');   
     $tema = get_field('tema');   
     $enlace = get_field('enlace');  
-    $disertantes = get_field('disertantes'); 
+    $disertantes = get_field('disertantes');    
 ?>
 <section class="webinar mb-5">
-    <div class="row mb-5">
-        <div class="col-12 col-md-8">
+    <div class="row mb-5 justify-content-between">
+        <div class="col-12 col-md-7">
         <?php if($fecha) :?>
         <h3 class="h5 mb-1">Webinar: <?php echo $fecha; ?></h3>   
         <?php endif; ?>        
 
         <?php if($tema) :?>
             <div class="mb-5">
-                <h4 class="h2 mt-1 "> <strong><?php echo $tema; ?></strong> </h4>                
+                <h4 class="h1 mt-2 "> <strong><?php echo $tema; ?></strong> </h4>                
             </div>   
         <?php endif; ?>
        
@@ -52,10 +52,16 @@
     
         
         </div>
-        <div class="col-12 col-md-4">
-            
-            <?php the_post_thumbnail( 'large' ); ?>
-        </div>
+
+
+        <?php if (has_post_thumbnail( $post->ID ) ) :?>
+            <div class="col-12 col-md-4">
+                <div class="shadow">
+                    <?php the_post_thumbnail( 'large' ); ?>
+                </div>
+            </div>
+        <?php endif;  ?>   
+        
     </div>
 </section>
 

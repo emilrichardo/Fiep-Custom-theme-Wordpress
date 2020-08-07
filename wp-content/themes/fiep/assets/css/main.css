@@ -305,6 +305,10 @@ opacity: .85!important;
 
 .post-thumb{}
 
+.si-page-header-wrapper{
+    margin-left: 0!important;
+}
+
 
 .col-md.flex-basis-auto.start-sm, .col-md.flex-basis-auto.end-sm{
     width: auto!important;
