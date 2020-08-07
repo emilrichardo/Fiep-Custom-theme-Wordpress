@@ -21,21 +21,34 @@
 	}
 
 	$sinatra_single_post_elements = sinatra_get_single_post_elements();
-	
-	$fecha = get_field('fecha');
-	$lugar = get_field('lugar');
-	$tema = get_field('tema');
-	
+	$category = get_queried_object();			
 	
 
 	if ( ! empty( $sinatra_single_post_elements ) ) {
 		foreach ( $sinatra_single_post_elements as $sinatra_element ) {
 
-			if ( 'content' === $sinatra_element ) {
-				do_action( 'sinatra_before_single_content' );
-				echo '<h3 class="text-center">' . $fecha . '</h3>';
-				echo '<h4 class="text-center">' . $lugar . '</h4>';
-				echo '<h4 class="text-center">' . $tema . '</h4>';
+			if ( 'content' === $sinatra_element ) { 
+				
+				
+				
+				
+				do_action( 'sinatra_before_single_content' );	
+
+				$post = get_post();
+				$parent = '';
+				$category_detail=get_the_category($post->ID);//$post->ID
+					if($category_detail[0]->parent != 0){
+						$parent = get_term( $category_detail[0]->parent );
+					}else{
+						$parent = $category_detail[0]->slug;
+					}
+					
+					if($parent == 'webinar'){
+						get_template_part( 'template-parts/content/evento-webinar' , $sinatra_element );
+					}
+
+				
+				
 				get_template_part( 'template-parts/entry/entry', $sinatra_element );
 				do_action( 'sinatra_after_single_content' );
 			} else {
