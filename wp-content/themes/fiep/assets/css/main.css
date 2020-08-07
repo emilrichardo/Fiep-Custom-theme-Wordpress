@@ -55,6 +55,7 @@ a, a:hover, *:hover{
     color: var(--white)!important;
 }
 
+
 /**/
 
 #sinatra-topbar>.si-container>.si-flex-row{
@@ -291,6 +292,15 @@ opacity: .85!important;
     
     
 }
+.card-speacker img{
+    object-fit: cover;
+    object-position: center center;
+    height: 80px;
+    object-fit: cover;
+    object-position: center;
+    width:80px;
+}
+
 
 
 .post-thumb{}
