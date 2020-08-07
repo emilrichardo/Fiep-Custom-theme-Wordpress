@@ -18,7 +18,11 @@ if( $disertantes ):
         <div class="col-12  col-md-6">
             <div class="card card-speacker">
                 <div class="card-body d-flex align-items-center">
-                    <img class="rounded-circle mr-3" src="<?php  echo esc_html( $foto ) ;?>" alt="">
+                    <?php if($foto): ?>
+                        <img class="rounded-circle mr-3" src="<?php  echo esc_html( $foto ) ;?>" alt="">
+                     <?php endif;?>
+
+                    
                     <div class="text-profile">
                         <?php  echo wp_kses_post('<h5 class="mt-0">' . $nombre  . '</h5>') ;?>
                         <?php  echo wp_kses_post('<p class="small text-muted mt-0 mb-0">' . $profesion  . '</p>') ;?>
