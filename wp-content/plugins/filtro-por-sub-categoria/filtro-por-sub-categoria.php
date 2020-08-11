@@ -26,7 +26,6 @@ class subCategoria_widget extends WP_Widget {
 		);
 	}
 	
-	
 	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		echo $args['before_widget'];
@@ -42,37 +41,40 @@ class subCategoria_widget extends WP_Widget {
         'parent'    => $term->term_id,
         'hide_empty' => false,
 	) );
-
+	echo '<hr>';
     if ( $children ) { 
-		echo '<hr>';
+		
         foreach( $children as $subcat )
         {	
 			if($subcat->count != 0){
-				echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
+				echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-			light">'.$subcat->count.'</span></a>';	
 			}
 		}
-    }else{
-		$parent = get_term( $term->parent );
-		$children = get_terms( $term->taxonomy, array(
-			'parent'    => $parent->term_id,
-			'hide_empty' => false
-		) );
+    }
+	else
+	{
+		if($term->parent != 0){
+				$parent = get_term( $term->parent );
+				$children = get_terms( $term->taxonomy, array(
+				'parent'    => $parent->term_id,
+				'hide_empty' => false
+			) );
 		
-		if ($children ){
-			echo '<hr>';
-			foreach( $children as $subcat )
-			{
-				if($subcat->count != 0){
-					if($term->term_id == $subcat->term_id){
-						echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';
-					}else{
-						echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
-					}	
+			if ($children ){
+				echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($parent, $parent->taxonomy)) . '"> Todos </a><br>';	
+				foreach( $children as $subcat )
+				{
+					if($subcat->count != 0){
+						if($term->term_id == $subcat->term_id){
+							echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';
+						}else{
+							echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($subcat, $subcat->taxonomy)) . '">' . $subcat->name . ' <span class="badge badge-light">'.$subcat->count.'</span></a>';	
+						}	
+					}
 				}
+				
 			}
-			echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url(get_term_link($parent, $parent->taxonomy)) . '"> Todos </a>';	
 		}
-		
 	}
 }
 	
