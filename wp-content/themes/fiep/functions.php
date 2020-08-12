@@ -203,4 +203,15 @@ function add_custom_taxonomy() {
 
 
 
+// Registra el script para validar el formulario de cheqout
+function custom_checkout_validation_scripts () {
+  wp_register_script('miscript', get_stylesheet_directory_uri(). '/assets/js/checkout-validation.js', array('jquery'), '1', true );
+  wp_enqueue_script('miscript');
+}
+
+add_action ('wp_enqueue_scripts', 'custom_checkout_validation_scripts');
+
+ 
+	
+
   
