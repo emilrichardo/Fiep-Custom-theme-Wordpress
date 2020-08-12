@@ -161,7 +161,44 @@ function add_custom_taxonomy() {
                );
     register_post_type( 'cursos', $args);
   }
-     
+   
+
+	
+	//quita los productos de la categorias Cursos Online
+	add_action( 'woocommerce_product_query', 'bbloomer_hide_products_category_shop' );
+	   
+	function bbloomer_hide_products_category_shop( $q ) {
+	  
+		$tax_query = (array) $q->get( 'tax_query' );
+	  
+		$tax_query[] = array(
+			   'taxonomy' => 'product_cat',
+			   'field' => 'slug',
+			   'terms' => array( 'cursos-online' ), // Category slug here
+			   'operator' => 'NOT IN'
+		);
+		$q->set( 'tax_query', $tax_query );
+	  
+	}  
+	
+	//Quita las categorias de la tienda que no queremos mostrar
+	function get_subcategory_terms( $terms, $taxonomies, $args ) {
+
+		$new_terms = array();
+		$hide_category = array( 20, 40 ); // ID de las categorias que no queremos que se muestren
+
+		// si es una categoría de producto y en la página de la tienda
+		if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
+			foreach ( $terms as $key => $term ) {
+				if ( ! in_array( $term->term_id, $hide_category ) ) {
+					$new_terms[] = $term;
+				}
+			}
+			$terms = $new_terms;
+		}
+		return $terms;
+	}
+	add_filter( 'get_terms', 'get_subcategory_terms', 10, 3 );
  
 
 
