@@ -19,6 +19,7 @@ jQuery(function($) {
             wrapper.addClass('woocommerce-invalid'); // error
             wrapper.removeClass('woocommerce-validated'); // error
         } else {
+
             wrapper.addClass('woocommerce-validated'); // success
         }
     });
