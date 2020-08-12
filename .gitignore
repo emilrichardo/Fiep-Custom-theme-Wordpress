@@ -87,7 +87,7 @@ wp-content/themes/*
 !wp-content/themes/fiep
 wp-content/mu-plugins/
 wp-content/wp-cache-config.php
-#wp-content/plugins/
+wp-content/plugins/
 wp-content/languages/
 wp-content/resources/
 
