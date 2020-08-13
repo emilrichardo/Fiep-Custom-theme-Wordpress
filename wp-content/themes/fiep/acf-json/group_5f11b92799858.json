@@ -47,44 +47,6 @@
             "return_format": "value"
         },
         {
-            "key": "field_5f2b76678acbd",
-            "label": "Precio de curso",
-            "name": "precio_de_curso",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5f2c42f06daba",
-            "label": "Botón agregar a carrito",
-            "name": "agregar",
-            "type": "text",
-            "instructions": "Agregar shortcode de boton",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5f11bb3cbe241",
             "label": "Descripcion",
             "name": "descripcion",
@@ -484,5 +446,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1596833658
+    "modified": 1597343476
 }
