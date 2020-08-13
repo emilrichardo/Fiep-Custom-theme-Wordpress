@@ -212,6 +212,46 @@ function custom_checkout_validation_scripts () {
 add_action ('wp_enqueue_scripts', 'custom_checkout_validation_scripts');
 
  
-	
+function custom_price_shortcode_callback( $atts ) {
+
+  $atts = shortcode_atts( array(
+      'id' => null,
+  ), $atts, 'product_price' );
+
+  $html = '';
+
+  if( intval( $atts['id'] ) > 0 && function_exists( 'wc_get_product' ) ){
+      // Get an instance of the WC_Product object
+      $product = wc_get_product( intval( $atts['id'] ) );
+
+      // Get the product prices
+      $price         = wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) ); // Get the active price
+      $regular_price = wc_get_price_to_display( $product, array( 'price' => $product->get_regular_price() ) ); // Get the regular price
+      $sale_price    = wc_get_price_to_display( $product, array( 'price' => $product->get_sale_price() ) ); // Get the sale price
+
+      // Your price CSS styles
+      $style1 = 'style="font-size:25px;color:#23282D;font-weight:bold;text-decoration: none;"';
+      $style2 = 'style="font-size:25px;color:#23282D"';
+
+      // Formatting price settings (for the wc_price() function)
+      $args = array(
+          'ex_tax_label'       => false,
+          'currency'           => 'ARS',
+          'decimal_separator'  => '.',
+          'thousand_separator' => ' ',
+          'decimals'           => 2,
+          'price_format'       => get_woocommerce_price_format(),
+      );
+
+      // Formatting html output
+      if( ! empty( $sale_price ) && $sale_price != 0 && $sale_price < $regular_price )
+        
+          $html = "<del $style2>" . wc_price( $regular_price, $args ) . "</del>&nbsp; &nbsp;<ins $style1>AR" . wc_price( $sale_price, $args ) . "</ins>"; // Sale price is set
+      else
+          $html = "<ins $style1>" . wc_price( $price, $args ) . "</ins>"; // No sale price set
+  }
+  return $html;
+}
+add_shortcode( 'product_price', 'custom_price_shortcode_callback' );
 
   
