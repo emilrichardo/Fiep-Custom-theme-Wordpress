@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_5f358c3a5a6ff",
-            "label": "Acordeon de datos",
-            "name": "acordeon_de_datos",
+            "label": "Acordeon",
+            "name": "acordion_datos",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -22,9 +22,9 @@
             "button_label": "",
             "sub_fields": [
                 {
-                    "key": "field_5f358c6f5a700",
-                    "label": "Acordion",
-                    "name": "acordion",
+                    "key": "field_5f369c7df035d",
+                    "label": "ComponenteAcordeon",
+                    "name": "componenteacordeon",
                     "type": "clone",
                     "instructions": "",
                     "required": 0,
@@ -50,14 +50,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "cursos"
             }
         ],
         [
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "cursos"
+                "value": "post"
             }
         ]
     ],
@@ -69,5 +69,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1597344985
+    "modified": 1597435275
 }
