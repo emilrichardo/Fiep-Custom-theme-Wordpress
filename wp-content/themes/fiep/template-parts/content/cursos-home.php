@@ -14,88 +14,63 @@
     )); 
     ?>	
 
+
 <?php if ( $cursos_list->have_posts() ) : ?>
-    <section class="bg-light pb-5">
-    
-    <div class="si-container text-center">
-		<h2>Cursos en Línea</h2>
-		<div class="container">
-			<div class="si-flex-row ">
-
-    <?php while ( $cursos_list->have_posts() ) : $cursos_list->the_post();
-        $fecha = get_field('fecha');
-        $lugar = get_field('lugar');
-        $tema = get_field('tema');  
-        $estado_inscripciones = get_field_object('estado_inscripciones');
-        $estado_inscripciones_value = get_field('estado_inscripciones');  
-        $cupos = get_field_object('cupos'); 
-        $cupos_value = get_field('cupos'); 
-        $certificaciones = get_field('certificaciones');
-        $institucion_organizadora = get_field('institucion_organizadora');    
-             
-        ?>
-               
-         
-                <div class="col-xs-12 col-md-4">                
-    
-                  <a href="<?php the_permalink(); ?>"> 
-                        <div class="card text-left shadow">
-                            <div class="card-header">
-                                <?php 
-                                // estado de inscripciones
-                                if( $estado_inscripciones['value'] == 'proximamente' ) {                    
-                                    echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-clock-o text-warning" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ': ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
-                                } elseif( $estado_inscripciones['value'] == 'abiertas' ){
-                                    echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ' ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
-                                }  else {
-                                    echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-times-circle text-danger" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ' ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
-                                } ;
-                                ?>
-
+<div class="si-container">
+	<div id="primary" class="content-area">
+		<main id="content" class="site-content" role="main" itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage">		
+        <article id="post-<?php the_ID(); ?>" <?php post_class( 'sinatra-article' ); ?><?php sinatra_schema_markup( 'article' ); ?>>
+            <h2 class="h1 blog-title">Cursos Online</h2>
+                <div class="si-flex-row">	
+                    <?php while ( $cursos_list->have_posts() ) : $cursos_list->the_post();
+                    $fecha = get_field('fecha');
+                    $lugar = get_field('lugar');
+                    $tema = get_field('tema');  
+                    $estado_inscripciones = get_field_object('estado_inscripciones');
+                    $estado_inscripciones_value = get_field('estado_inscripciones');  
+                    $cupos = get_field_object('cupos'); 
+                    $cupos_value = get_field('cupos'); 
+                    $certificaciones = get_field('certificaciones');
+                    $institucion_organizadora = get_field('institucion_organizadora');   
+                    ?>			
+                    <div class="col-xs-12 col-md-4 mb-5">	
+                        <div class="si-entry-content-wrapper card-news">					
+                            <div class="post-category">
+                            <span class="">
+                               <?php echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-clock-o text-warning" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ': ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );?>	
+                            </span>
                             </div>
-                            <div class="card-body">
-                                <?php  
-                                get_template_part( 'template-parts/entry/entry-header' );                            
-                                get_template_part( 'template-parts/entry/entry-thumbnail' );
-                                                               
-                                // fecha de inscripciones
-                                    echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    
-                                ?>  
-                                 <?php 
-                                if ($cupos){
-                                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted">' . $cupos['choices'][$cupos_value] . '</h5> <hr class="my-1">'); 
-                                };
-                                if ($certificaciones){
-                                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> ' . $certificaciones . '</h5> <hr class="my-1">');
-                                };
-                                if ($institucion_organizadora){
-                                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Organizado por: ' . $institucion_organizadora . '</h5> <hr class="my-1">');
-                                };         
-                                        
-                                ?>
-                                      <a href="<?php the_permalink(); ?>" class="btn btn-block btn-primary mt-3">Ver curso</a>            
-                                     
-                             </div>                  
-                        </div>
-                    </a>					
-				</div>
-            
-        
-                
- 
+                            <div class="post-thumb entry-media thumbnail">
+                                <a href="http://fiep.local/como-promover-la-practica-regular-del-deporte-y-la-actividad-fisica-en-los-jovenes/" class="entry-image-link">
+                                <?php get_template_part( 'template-parts/entry/entry-thumbnail' ); ?>
+                                
+                                </a>
+                            </div>
+                            <?php echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    ?>
+                            <header class="entry-header">
+                                <h3 class="entry-title h5" itemprop="headline">
+                                <?php get_template_part( 'template-parts/entry/entry-header' );	?>
+                                
+                            </header>
+                            <section class="sharing-box content-margin content-background clearfix">								
+                                <div class="share-button-wrapper text-right">	</div>
+                            </section>
+                        </div>		
+                    </div>	
+                    <?php $postUrl = 'http' . ( isset( $_SERVER['HTTPS'] ) ? 's' : '' ) . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; ?>
+                    
+                    <?php endwhile; ?>
+                </div>
+            </article><!-- #post-98 -->
+        </main><!-- #content .site-content -->
+    </div><!-- #primary .content-area -->
+</div>
 
-    <?php endwhile; ?>
+
+
+
 <?php wp_reset_postdata(); ?>
 
 <?php else : ?>
 <p><?php __('No News'); ?></p>
-
-
-             </div>
-		</div>
-    </div>
-
-    
 <?php endif; ?>
-</section>
-
