@@ -22,10 +22,10 @@
             "button_label": "",
             "sub_fields": [
                 {
-                    "key": "field_5f369c7df035d",
-                    "label": "ComponenteAcordeon",
-                    "name": "componenteacordeon",
-                    "type": "clone",
+                    "key": "field_5f3a6a62d1890",
+                    "label": "titulo",
+                    "name": "titulo",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -34,13 +34,30 @@
                         "class": "",
                         "id": ""
                     },
-                    "clone": [
-                        "group_5f2dbdd6f1e46"
-                    ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5f3a6a6ad1891",
+                    "label": "cuerpo",
+                    "name": "cuerpo",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
                 }
             ]
         }
@@ -69,5 +86,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1597435275
+    "modified": 1597666218
 }
