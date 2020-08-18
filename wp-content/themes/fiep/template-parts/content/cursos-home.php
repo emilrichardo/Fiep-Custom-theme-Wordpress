@@ -31,13 +31,25 @@
                     $cupos = get_field_object('cupos'); 
                     $cupos_value = get_field('cupos'); 
                     $certificaciones = get_field('certificaciones');
-                    $institucion_organizadora = get_field('institucion_organizadora');   
+                    $institucion_organizadora = get_field('institucion_organizadora');  
+                    $duracion_del_curso = get_field('duracion_del_curso');  
                     ?>			
                     <div class="col-xs-12 col-md-4 mb-5">	
                         <div class="si-entry-content-wrapper card-news">					
                             <div class="post-category">
                             <span class="">
-                               <?php echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-clock-o text-warning" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ': ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );?>	
+                            <?php 
+								// estado de inscripciones
+								if( $estado_inscripciones['value'] == 'proximamente' ) {                    
+									echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-clock-o text-warning" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ': ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
+								} elseif( $estado_inscripciones['value'] == 'abiertas' ){
+									echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ' ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
+								}  else {
+									echo wp_kses_post( '<h5 class="my-0 text-left"> <strong> <i class="fa fa-times-circle text-danger" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ' ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
+								} ;
+							?>
+                              
+
                             </span>
                             </div>
                             <div class="post-thumb entry-media thumbnail">
@@ -46,12 +58,20 @@
                                 
                                 </a>
                             </div>
-                            <?php echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    ?>
+                            
+                            
+                            
                             <header class="entry-header">
                                 <h3 class="entry-title h5" itemprop="headline">
                                 <?php get_template_part( 'template-parts/entry/entry-header' );	?>
                                 
                             </header>
+                            <?php 
+                                echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    
+                                if ($duracion_del_curso){
+                                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Duracion:&nbsp;' . $duracion_del_curso . '</h5>'); 
+                                }
+                            ?>
                             <section class="sharing-box content-margin content-background clearfix">								
                                 <div class="share-button-wrapper text-right">	</div>
                             </section>

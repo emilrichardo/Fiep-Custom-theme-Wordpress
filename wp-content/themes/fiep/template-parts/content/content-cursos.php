@@ -12,11 +12,17 @@
     $disertantes = get_field('disertantes');
     $acordion_datos = get_field('acordion_datos');
     $auspiciantes = get_field('auspiciantes'); 
+    $duracion_del_curso = get_field('duracion_del_curso');   
+    
+    $cupos = get_field_object('cupos'); 
+    $cupos_value = get_field('cupos'); 
+    $certificaciones = get_field('certificaciones');
+    $institucion_organizadora = get_field('institucion_organizadora'); 
 ?>
 
     <div class="row justify-content-between">
-        <div class="col-12 col-md-7">
-        <?php  
+        <div class="col-12 col-md-7 order-first">
+        <?php 
             // estado de inscripciones
             if( $estado_inscripciones['value'] == 'proximamente' ) {                    
                 echo wp_kses_post( '<h5 class="text-left"> <strong> <i class="fa fa-clock-o text-warning" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ': ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
@@ -26,7 +32,11 @@
                 echo wp_kses_post( '<h5 class="text-left"> <strong> <i class="fa fa-times-circle text-danger" aria-hidden="true"></i> ' . $estado_inscripciones['label'] . ' ' . $estado_inscripciones['choices'][$estado_inscripciones_value] . '</strong></h5>'  );
             } ;
             // fecha de inscripciones
-            echo wp_kses_post('<h4 class="h2 mt-0 ">  Inicia el <strong>' . $fecha . '</strong></h3>');             
+            echo wp_kses_post('<h4 class="h2 mt-0 ">  Inicia el <strong>' . $fecha . '</strong></h3>'); 
+            ?>
+        </div>
+        <div class="col-12 col-md-7">
+        <?php  
             echo wp_kses_post('<div class="alert alert-warning mt-5"><p class="h6"> <strong>Temática:</strong> <br>' . $tematica . '</p></div>');  
             get_template_part(  'template-parts/content/card-persona' );
             //descripcion
@@ -71,11 +81,12 @@
                 
                 <?php
             endif; 
-        ?>  
+        ?>       
 
 
         </div>
-        <div class="col-12 col-md-4">
+
+        <div class="col-12 col-md-4 order-first order-md-last">
             <?php 
             if ($estado_inscripciones['value'] == 'abiertas' ) : 
                 get_template_part( 'template-parts/content/card-cursos' );             
@@ -94,7 +105,22 @@
             </div>
             <?php 
             endif; 
-            ?>            
+            ?>     
+            
+            <?php 
+                if ($duracion_del_curso){
+                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Duracion:&nbsp;' . $duracion_del_curso . '</h5> <hr class="my-1">'); 
+                }
+                if ($cupos){
+                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted">' . $cupos['choices'][$cupos_value] . '</h5> <hr class="my-1">'); 
+                };
+                if ($certificaciones){
+                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> ' . $certificaciones . '</h5> <hr class="my-1">');
+                };
+                if ($institucion_organizadora){
+                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Organizado por: ' . $institucion_organizadora . '</h5> <hr class="my-1">');
+                };         
+            ?>       
             <?php             
             echo wp_kses_post('<div class="mt-5"><p class="h6"> <strong>¿A quién está dirigido?</strong> <br>' . $dirigido . '</p></div>');
             ;?>

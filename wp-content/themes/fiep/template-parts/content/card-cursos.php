@@ -3,10 +3,7 @@
     // $agregar = get_field('agregar'); 
     $precio = get_field('precio'); 
     $agregar = get_field('boton_agregar'); 
-    $cupos = get_field_object('cupos'); 
-    $cupos_value = get_field('cupos'); 
-    $certificaciones = get_field('certificaciones');
-    $institucion_organizadora = get_field('institucion_organizadora'); 
+    
 ?>
 
 <div class="card mb-5 shadow">
@@ -34,16 +31,5 @@
                 width: 100% !important;   
             }
         </style>
-        <?php 
-            if ($cupos){
-                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted">' . $cupos['choices'][$cupos_value] . '</h5> <hr class="my-1">'); 
-            };
-            if ($certificaciones){
-                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> ' . $certificaciones . '</h5> <hr class="my-1">');
-            };
-            if ($institucion_organizadora){
-                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Organizado por: ' . $institucion_organizadora . '</h5> <hr class="my-1">');
-            };         
-        ?>
     </div>
 </div>
