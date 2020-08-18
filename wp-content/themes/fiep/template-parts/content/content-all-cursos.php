@@ -10,9 +10,11 @@
         $cupos = get_field_object('cupos'); 
         $cupos_value = get_field('cupos'); 
         $certificaciones = get_field('certificaciones');
-        $institucion_organizadora = get_field('institucion_organizadora');    
-             
+		$institucion_organizadora = get_field('institucion_organizadora');  
+		$duracion_del_curso = get_field('duracion_del_curso');    
+       
         ?>
+		
 	<div class="col-12">                
     	<div class="card text-left shadow mb-4">
 				<div class="card-header">
@@ -49,6 +51,9 @@
 							<hr>
 								
 							<?php 
+								if ($duracion_del_curso){
+									echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Duracion:&nbsp;' . $duracion_del_curso . '</h5>'); 
+								}
 								if ($cupos){
 									echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted my-1">' . $cupos['choices'][$cupos_value] . '</h5>'); 
 								};
@@ -59,7 +64,9 @@
 									echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted my-1"> Organizado por: ' . $institucion_organizadora . '</h5>');
 								};         
 								
-								echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    			
+								echo wp_kses_post('<h4 class="h6 mt-2 ">  Inicia el <strong>' . $fecha . '</strong></h3>');    
+								
+											
 							?>
 							<a href="<?php the_permalink(); ?>" class="btn btn-primary mt-3">Ver curso</a>            
 						</div>
