@@ -136,7 +136,7 @@
                 "id": ""
             },
             "choices": {
-                "proximamente": "Aún no se encuentran abiertas",
+                "proximamente": "Proximamente",
                 "abiertas": "Abiertas",
                 "cerradas": "Cerradas"
             },
@@ -404,5 +404,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1597347659
+    "modified": 1597770834
 }

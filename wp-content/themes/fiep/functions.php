@@ -328,3 +328,73 @@ function cpt_sticky_class($classes) {
               }
   add_filter('post_class', 'cpt_sticky_class');
   
+
+
+  // function my_pre_get_posts( $query ) {
+	
+  //   // do not modify queries in the admin
+  //   // if( is_admin() ) {
+  //   //   return $query;
+  //   // }
+    
+  //   // only modify queries for 'cursos' post type
+  //   if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'cursos' ) {
+  //     // allow the url to alter the query
+  //     if(isset($_GET['estado_inscripciones']) ) {
+  //       $query->set('meta_key', 'estado_inscripciones');
+  //       $query->set('meta_value', $_GET['estado_inscripciones']);
+  //     } 
+  //   }
+  //   // return
+  //   return $query;
+  // }
+  
+  // add_action('pre_get_posts', 'my_pre_get_posts');
+
+  // // Permite  filtar los cursos por argumentos
+  // function my_posts_where( $where ) {
+  //   $where = str_replace("meta_key = 'estado_inscripciones", "meta_key LIKE 'estado_inscripciones%", $where);
+  //   return $where;
+  // }
+  // add_filter('posts_where', 'my_posts_where');
+
+  // array of filters (field key => field name)
+
+
+// action
+add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
+
+function my_pre_get_posts( $query ) {
+	
+	// bail early if is in admin
+	if( is_admin() ) {
+    return;
+  }
+  
+  if( !$query->is_main_query() ) {
+    return;
+  }
+  
+	// get meta query
+	$meta_query = $query->get('meta_query');
+
+  if(isset($_GET['categoria_cursos']) ) {
+    $query->set('taxonomy', 'categoria_cursos');
+    $query->set('taxonomy', 'slug');
+    $query->set('terms', $_GET['categoria_cursos']);
+  }
+
+  if(isset($_GET['estado_inscripciones']) ) {
+    $query->set('meta_key', 'estado_inscripciones');
+    $query->set('meta_value', $_GET['estado_inscripciones']);
+  }
+
+  if(isset($_GET['cupos']) ) {
+    $query->set('meta_key', 'cupos');
+    $query->set('meta_value', $_GET['cupos']);
+    $query->set('meta_compare', 'LIKE');
+  }
+  
+  $query->set('meta_query', $meta_query);
+  return;
+}
