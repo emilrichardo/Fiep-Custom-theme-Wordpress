@@ -185,7 +185,7 @@ function add_custom_taxonomy() {
 	function get_subcategory_terms( $terms, $taxonomies, $args ) {
 
 		$new_terms = array();
-		$hide_category = array( 20, 40 ); // ID de las categorias que no queremos que se muestren
+		$hide_category = array( 20, 39 ); // ID de las categorias que no queremos que se muestren
 
 		// si es una categoría de producto y en la página de la tienda
 		if ( in_array( 'product_cat', $taxonomies ) && !is_admin() && is_shop() ) {
@@ -262,4 +262,69 @@ add_action ('wp_enqueue_scripts', 'acordeon_scripts');
 // }
 // add_shortcode( 'product_price', 'custom_price_shortcode_callback' );
 
+
+//Permite fijar un curso dentro de su página a la parte superior
+function wpb_cpt_sticky_at_top( $posts ) {
+  
+  // apply it on the archives only
+  if ( is_main_query() && is_post_type_archive() ) {
+      global $wp_query;
+
+      $sticky_posts = get_option( 'sticky_posts' );
+      $num_posts = count( $posts );
+      $sticky_offset = 0;
+
+      // Find the sticky posts
+      for ($i = 0; $i < $num_posts; $i++) {
+
+          // Put sticky posts at the top of the posts array
+          if ( in_array( $posts[$i]->ID, $sticky_posts ) ) {
+              $sticky_post = $posts[$i];
+
+              // Remove sticky from current position
+              array_splice( $posts, $i, 1 );
+
+              // Move to front, after other stickies
+              array_splice( $posts, $sticky_offset, 0, array($sticky_post) );
+              $sticky_offset++;
+
+              // Remove post from sticky posts array
+              $offset = array_search($sticky_post->ID, $sticky_posts);
+              unset( $sticky_posts[$offset] );
+          }
+      }
+
+      // Look for more sticky posts if needed
+      if ( !empty( $sticky_posts) ) {
+
+          $stickies = get_posts( array(
+              'post__in' => $sticky_posts,
+              'post_type' => $wp_query->query_vars['post_type'],
+              'post_status' => 'publish',
+              'nopaging' => true
+          ) );
+
+          foreach ( $stickies as $sticky_post ) {
+              array_splice( $posts, $sticky_offset, 0, array( $sticky_post ) );
+              $sticky_offset++;
+          }
+      }
+
+  }
+
+  return $posts;
+}
+
+add_filter( 'the_posts', 'wpb_cpt_sticky_at_top' );
+
+// Add sticky class in article title to style sticky posts differently
+
+function cpt_sticky_class($classes) {
+          if ( is_sticky() ) : 
+          $classes[] = 'sticky';
+          return $classes;
+      endif; 
+      return $classes;
+              }
+  add_filter('post_class', 'cpt_sticky_class');
   
