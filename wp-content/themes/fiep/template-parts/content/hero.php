@@ -19,9 +19,11 @@
         $lugar = get_field('lugar');
         $tema = get_field('tema');
         $image = get_the_post_thumbnail_url( $hero->ID, 'large' );
+        $genially_html = get_field('genially_html');
         ?>
     <section class="hero-home">
         
+
         <div class="overlay-bg"  style="background-image: url('<?php echo $image ; ?>')"></div>
         <div class="inner-hero">
             <div class="row align-items-center">
@@ -47,7 +49,14 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="img-hero">
-                        <img class="w-100 shadow" src="<?php echo $image ; ?>" alt="<?php the_title(); ?>">
+                        <?php 
+                            if($genially_html){
+                                echo $genially_html;
+                            }else{
+                                echo '<img class="w-100 shadow" src="' .$image . '" alt="' .the_title(). '">';
+                            }
+                        ?>
+                        
                     </div>
                 </div>
                 
