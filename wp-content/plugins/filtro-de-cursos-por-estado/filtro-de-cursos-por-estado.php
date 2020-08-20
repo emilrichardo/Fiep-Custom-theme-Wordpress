@@ -32,10 +32,11 @@ class estadoCursos_widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		//Levanta el tipo de entrada
 		$postType = get_post_type_object(get_post_type());
-        echo '<h5 class="ml-2"><strong><i>Inscripciones</i></strong></h5>';
+        
 
 		if ($postType) {
             if(esc_html($postType->labels->singular_name) == "Curso"){
+                echo '<h5 class="ml-2"><strong><i>Inscripciones</i></strong></h5>';
                 $parameter = $_GET['estado_inscripciones'];
                 
                 $cursos = get_posts([
