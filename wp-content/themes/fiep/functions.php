@@ -404,7 +404,7 @@ add_action( 'woocommerce_order_status_processing', 'actualiza_estado_pedidos_a_c
 // add_action( 'woocommerce_order_status_on-hold', 'actualiza_estado_pedidos_a_completado' );
 function actualiza_estado_pedidos_a_completado( $order_id ) {
     global $woocommerce;
-    $order = new WC_Order( 1249 );
+    
     //ID's de las pasarelas de pago a las que afecta
     // $paymentMethods = array( 'bacs', 'cheque', 'cod', 'paypal' );
     $paymentMethods = array( 'woo-mercado-pago-basic' );
