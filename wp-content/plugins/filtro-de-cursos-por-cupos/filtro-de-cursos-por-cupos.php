@@ -31,10 +31,8 @@ function cuposCursos_register_widget() {
         public function widget( $args, $instance ) {
             //Levanta el tipo de entrada
             $postType = get_post_type_object(get_post_type());
-            
-
-            if ($postType) {
-                if(esc_html($postType->labels->singular_name) == "Curso"){
+            global $wp;
+            if ($wp->request=="cursos") {
                     echo '<h5 class="ml-2"><strong><i>Cupos</i></strong></h5>';
                     $parameter = $_GET['cupos'];
                     
@@ -54,15 +52,12 @@ function cuposCursos_register_widget() {
                         
                         if(!in_array($valor, $result)){
                             array_push($result, $valor);
-                            if($parameter == $valor ){
-                                echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?cupos=' . $value) ) . '">' . $value . '</a>';
-                            }else{
-                                echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url( home_url( '/cursos/?cupos=' . $value) ) . '">' . $value . ' </a>';	
+                            if($parameter != $value ){
+                                // echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?cupos=' . $value) ) . '">' . $value . '</a>';
+                                echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url( home_url( '/cursos/?cupos=' . $value) ) . '">' . ucfirst ( $value ) . ' </a>';	
                             }
-                            
                         }
                     }
-                }
             }
         }
         

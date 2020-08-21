@@ -31,16 +31,26 @@ function quitarfiltroCursos_register_widget() {
         public function widget( $args, $instance ) {
             //Levanta el tipo de entrada
             $postType = get_post_type_object(get_post_type());
-            
-            if ($postType) {
-                if(esc_html($postType->labels->singular_name) == "Curso"){
+            global $wp;
+            if ($wp->request=="cursos") {
                     $categoria_cursos = $_GET['categoria_cursos'];
                     $estado_inscripciones = $_GET['estado_inscripciones'];
                     $cupos = $_GET['cupos'];
-                    if($categoria_cursos != '' || $estado_inscripciones != '' || $cupos != '' ){
-                        echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="'. esc_url( home_url( '/cursos') ) . '">Quitar Filtros</a><br>';
+                    $texto = '';
+                    if($categoria_cursos != ''){
+                        $texto = $categoria_cursos;
                     }
-                }
+                    if($estado_inscripciones != ''){
+                        $texto = $estado_inscripciones;
+                    }
+                    if($cupos != '' ){
+                        $texto = $cupos;
+                    }
+                    if($texto != ''){
+                        echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos') ) . '">'.ucfirst ( $texto ) .' <i class="fa fa-close"></i></a><br>';
+                    }
+                   
+                
             }
         }
         
