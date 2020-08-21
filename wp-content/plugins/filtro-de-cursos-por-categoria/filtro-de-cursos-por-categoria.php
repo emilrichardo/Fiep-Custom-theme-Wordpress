@@ -32,10 +32,11 @@ License URI:
             //Levanta el tipo de entrada
             $postType = get_post_type_object(get_post_type());
             
-    
-            if ($postType) {
-                if(esc_html($postType->labels->singular_name) == "Curso"){
-                    echo '<h5 class="ml-2"><strong><i>Categorias</i></strong></h5>';
+            global $wp;
+            //echo $wp->request;
+            //esc_html($postType->labels->singular_name) == "Curso"
+            if ($wp->request=="cursos") {
+                echo '<h5 class="ml-2"><strong><i>Categorias</i></strong></h5>';
                     $parameter = $_GET['categoria_cursos'];
                     
                     $taxonomy = "categoria_cursos";
@@ -53,15 +54,14 @@ License URI:
                         
                         if(!in_array($slug, $result)){
                             array_push($result, $slug);
-                            if($parameter == $slug ){
-                                echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?categoria_cursos=' . $slug) ) . '">' . $name . '</a>';
-                            }else{
+                            if($parameter != $slug ){
+                                // echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?categoria_cursos=' . $slug) ) . '">' . $name . '</a>';
                                 echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url( home_url( '/cursos/?categoria_cursos=' . $slug) ) . '">' . $name . ' </a>';	
                             }
                             
                         }
-                    }
-                }
+                    }    
+                
             }
         }
         

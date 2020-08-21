@@ -33,9 +33,9 @@ class estadoCursos_widget extends WP_Widget {
 		//Levanta el tipo de entrada
 		$postType = get_post_type_object(get_post_type());
         
-
-		if ($postType) {
-            if(esc_html($postType->labels->singular_name) == "Curso"){
+        global $wp;
+        if ($wp->request=="cursos") {
+            
                 echo '<h5 class="ml-2"><strong><i>Inscripciones</i></strong></h5>';
                 $parameter = $_GET['estado_inscripciones'];
                 
@@ -55,15 +55,13 @@ class estadoCursos_widget extends WP_Widget {
                     
                     if(!in_array($valor, $result)){
                         array_push($result, $valor);
-                        if($parameter == $valor ){
-                            echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?estado_inscripciones=' . $valor) ) . '">' . $valor . '</a>';
-                        }else{
+                        if($parameter != $valor ){
+                            // echo '<a class="btn ml-1 mt-1 btn-sm btn-primary" href="'. esc_url( home_url( '/cursos/?estado_inscripciones=' . $valor) ) . '">' . $valor . '</a>';
                             echo '<a class="btn ml-1 mt-1 btn-sm btn-outline-primary" href="' . esc_url( home_url( '/cursos/?estado_inscripciones=' . $valor) ) . '">' . $valor . ' </a>';	
                         }
-                        
                     }
                 }
-			}
+			
 		}
 	}
 	

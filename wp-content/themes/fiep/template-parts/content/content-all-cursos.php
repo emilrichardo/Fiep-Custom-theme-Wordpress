@@ -1,4 +1,6 @@
+		
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'sinatra-article' ); ?><?php sinatra_schema_markup( 'article' ); ?>>
+
 	<?php if ( have_posts() ) : ?>
 		<div class="si-flex-row">	
 		<?php while ( have_posts() ) : the_post();
@@ -77,12 +79,16 @@
 						
   	</div>
 		<?php endwhile; ?>
-					
-			
 		<?php wp_reset_postdata(); ?>
 	<?php else : ?>
+		<div class="col-12">
+                        <div class="alert alert-warning text-center h1">
+                <i class="fa fa-warning text-warning" aria-hidden="true"></i>
+                <p class="h6"><strong>No se encontraron Cursos</strong> </p>                
+            </div>
+        </div>
 		<p><?php __('No News'); ?></p>
-		</div>
+		
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
 
