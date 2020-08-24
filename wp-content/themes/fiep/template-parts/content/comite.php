@@ -4,7 +4,7 @@
 <?php $comite = new WP_Query( 
     array( 
         'post_type' => 'personas', 
-        'posts_per_page' => 4, 
+        'posts_per_page' => 5, 
         'grupos' => 'comite',
         'order'   => 'ASC'
     ) 
