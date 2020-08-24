@@ -48,7 +48,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 				<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
 				<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'sinatra' ); ?></h3>
-				<div id="order_review" class="woocommerce-checkout-review-order">
+				<div id="order_review" class="">
 					<?php do_action( 'woocommerce_checkout_order_review' ); ?>
 				</div>
 
