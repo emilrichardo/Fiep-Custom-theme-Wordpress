@@ -421,8 +421,8 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
   //Aqui ponemos el ID del correo que queremos modificar
    if ( $email->id == 'customer_completed_order' ) { 
       echo '<p><h3 style="color: #5570ea; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">Para iniciar te sugerimos los siguientes tutoriales</h3>'; // Entre las dos p modificamos el mensaje que queremos mostrar
-      echo '<a href="https://www.youtube.com/watch?v=PW2qaxwKbHA&feature=youtu.be" target="blank">Conociendo el acceso principal del campus</a><br>';
-      echo '<a href="https://www.youtube.com/watch?v=LSNxzqqRHVI&feature=youtu.be" target="blank">Editar mi perfil</a><br>';
-      echo '<a href="https://www.youtube.com/watch?v=UvPaGHL5-30&feature=youtu.be" target="blank">Principales herramientas</a><br><hr>';
+      echo '<ul><li><a href="https://www.youtube.com/watch?v=PW2qaxwKbHA&feature=youtu.be" target="blank">Conociendo el acceso principal del campus</a></li>';
+      echo '<li><a href="https://www.youtube.com/watch?v=LSNxzqqRHVI&feature=youtu.be" target="blank">Editar mi perfil</a></li>';
+      echo '<li><a href="https://www.youtube.com/watch?v=UvPaGHL5-30&feature=youtu.be" target="blank">Principales herramientas</a></li></ul><br><hr>';
    }
 }
