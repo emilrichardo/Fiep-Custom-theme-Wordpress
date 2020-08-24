@@ -51,8 +51,7 @@
                                 ?>
                             </div>
                             <div class="">
-                                <a href="http://fiep.local/como-promover-la-practica-regular-del-deporte-y-la-actividad-fisica-en-los-jovenes/" class="entry-image-link">
-                                    <?php get_template_part( 'template-parts/entry/entry-thumbnail' ); ?>
+                                    <?php get_template_part( 'template-parts/entry/entry-thumbnail-cursos-home' ); ?>
                             </div>
                             <div class="card-footer">
                                 <header class="entry-header">
