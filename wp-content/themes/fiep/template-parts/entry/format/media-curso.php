@@ -54,7 +54,7 @@ $sinatra_media = apply_filters( 'sinatra_post_thumbnail', $sinatra_media );
 echo wp_kses_post(
 	sprintf(
 		// '<div class="post-thumb entry-media thumbnail">%1$s</div>',
-		'<div class="entry-media thumbnail">%1$s</div>',
+		'<div class="thumbnail">%1$s</div>',
 		$sinatra_media
 	)
 );

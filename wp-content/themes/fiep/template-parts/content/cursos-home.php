@@ -52,6 +52,7 @@
                             </div>
                             <div class="">
                                     <?php get_template_part( 'template-parts/entry/entry-thumbnail-cursos-home' ); ?>
+                                
                             </div>
                             <div class="card-footer">
                                 <header class="entry-header">
