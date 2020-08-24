@@ -44,7 +44,7 @@
                 ?>
                 <div class="row justify-content-center align-items-center mb-5 ">        
                     <div class="col- 12 col-md-12  mt-md-5 mb-5"><?php echo get_the_post_thumbnail($post_id , 'large', array( 'class' => 'w-100 rounded' )) ;?> </div>
-                    <div class="col-12 col-md-12"><h4 class="h5 mt-0"><?php echo esc_html( $descripcion ); ?></h3></div>
+                    <div class="col-12 col-md-12"><h4 class="h5 mt-0"><?php echo wp_kses_post( $descripcion ); ?></h3></div>
                 </div>
                 
                 <?php
