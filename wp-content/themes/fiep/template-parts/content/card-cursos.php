@@ -13,10 +13,24 @@
             if($habilitar){
                 $producto = get_field('producto_tienda'); 
                 if($producto != null && count($producto) != 0){
+                   
                     $product = wc_get_product( $producto[0]->ID );
                     echo '<div class="text-center">'. $product->get_image() . '</div><br>';
                     echo wp_kses_post ('<div class="mb-0">' . get_template_part( 'template-parts/entry/entry-header' ) . '</div>') ; 
-                    echo '<h3 class="mt-3">AR$ '. $product->get_price() . '</h3>';
+                    
+                    //echo var_dump($currencies);
+                    global $WOOCS;
+                    global $woocommerce;
+                    $currencies = $WOOCS->get_currencies();
+                    $value = apply_filters('woocs_exchange_value', $product->get_price());
+                    //echo $woocommerce->customer->country;
+                    // $currencies = $WOOCS->get_currencies();
+                    // $value = $product->get_price() * $currencies[$WOOCS->current_currency]['rate'];
+                    // $value = number_format($value, 2, $WOOCS->decimal_sep, '');
+                    // echo $value;
+                    
+                    //echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
+                    echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $value . '</h3>';
                     echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
                 }
             }else{
