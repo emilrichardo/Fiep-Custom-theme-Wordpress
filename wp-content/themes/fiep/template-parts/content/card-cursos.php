@@ -22,7 +22,8 @@
                     global $WOOCS;
                     global $woocommerce;
                     $currencies = $WOOCS->get_currencies();
-                    $value = apply_filters('woocs_exchange_value', $product->get_price());
+                    //echo  $product->get_price();
+                    //$value = apply_filters('woocs_exchange_value', $product->get_price());
                     //echo $woocommerce->customer->country;
                     // $currencies = $WOOCS->get_currencies();
                     // $value = $product->get_price() * $currencies[$WOOCS->current_currency]['rate'];
@@ -30,7 +31,7 @@
                     // echo $value;
                     
                     //echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
-                    echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $value . '</h3>';
+                    echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
                     echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
                 }
             }else{

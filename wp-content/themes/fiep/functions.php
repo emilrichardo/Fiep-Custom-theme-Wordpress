@@ -426,3 +426,46 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
       echo '<li><a href="https://www.youtube.com/watch?v=UvPaGHL5-30&feature=youtu.be" target="blank">Principales herramientas</a></li></ul><br><hr>';
    }
 }
+
+
+// add_action('woocommerce_checkout_create_order', 'save_order_custom_meta_data', 10, 2 );
+// function save_order_custom_meta_data( $order, $data ) {
+//     if( isset($_POST['totaleiva1']) && ! empty($_POST['totaleiva1']) ) {
+//         $order->update_meta_data( '_totale_iva_1', esc_attr( $_POST['totaleiva1'] ) );
+//     }
+//     if( isset($_POST['tfcarrello']) && ! empty($_POST['tfcarrello']) ) {
+//         $order->update_meta_data( '_totale_fin_carrello', esc_attr( $_POST['tfcarrello'] ) );
+//     }
+// }
+
+
+
+// Enganchar
+// add_filter ('woocommerce_checkout_fields', 'custom_override_checkout_fields');
+
+// // ¡Nuestra función enganchada - $ campos se pasa a través del filtro!
+// function custom_override_checkout_fields ($campos) {
+//      $fields ['order'] ['order_comments'] ['placeholder'] = 'Mi nuevo marcador de posición';
+//      $fields ['order'] ['order_comments'] ['label'] = 'Mi nueva etiqueta';
+//      return $campos;
+// }
+
+
+// add_filter( 'woocommerce_checkout_fields' , 'misha_print_all_fields' );
+ 
+// function misha_print_all_fields( $fields ) {
+ 
+// 	//if( !current_user_can( 'manage_options' ) )
+// 	//	return; // in case your website is live
+ 
+// 	print_r( $fields ); // wrap results in pre html tag to make it clearer
+// 	exit;
+ 
+// }
+
+// add_filter('wp_head',function(){    
+//   if(is_checkout()){
+//       global $WOOCS;
+//       $WOOCS->set_currency('USD');
+//   }
+// });
