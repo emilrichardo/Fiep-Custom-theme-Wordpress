@@ -25,10 +25,10 @@ if ( is_single() ) {
 do_action( 'sinatra_before_entry_thumbnail' );
 
 if ( has_post_thumbnail() ) {
-	get_template_part( 'template-parts/entry/format/media', $sinatra_post_format );
+	get_template_part( 'template-parts/entry/format/media-curso', $sinatra_post_format );
 }
 else {
-	echo '<div class="thumbnail "><img src="' . get_bloginfo( 'stylesheet_directory' ) . '/assets/images/sin_foto.jpg" /></div>';
+	echo '<div class="post-thumb entry-media thumbnail "><img src="' . get_bloginfo( 'stylesheet_directory' ) . '/assets/images/sin_foto.jpg" /></div>';
 }
 
 do_action( 'sinatra_after_entry_thumbnail' );
