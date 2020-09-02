@@ -481,33 +481,33 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
     $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     if($httpStatus == 200){
       $data = json_decode($result, true);
-      if(count($data) != 0){
-        echo "<h2 style='color: #5570ea; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>";
-        echo "<a class='link' href='https://www.fiepargentinaoficial.com/aulavirtual' style='font-weight: normal; text-decoration: underline; color: #5570ea;'>Fiepargentinaoficial.com/aulavirtual</a></h2>";
-        echo "<div style='margin-bottom: 40px;''>";
-        echo "<table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
-        echo "<thead><tr>" ;
-        echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Usuario/Username</th>";
-        echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Contraseña/Password</th>";
-        echo "</tr></thead><tbody>";
-        echo "<tr class='order_item'><td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap: break-word;'>";
-        echo $data['username'] . "</td>";
-        echo "<td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
-        echo  $data['password'] . "</td>";
-        echo " </tr></tbody></table></div>";
+      if($data != null && count($data) != 0){
+        echo '<h4>'. $data['username'] .' ya te encuentras matriculado en:</h4>';
+        echo '<ul>';
+        foreach ($Matricula->Productos as $item) {
+          echo '<li>' . $item->product_name . '</li>';
+        }
+        echo '</ul>';
+        
+        if($data['password'] != null){
+          echo "<h2 style='color: #5570ea; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>";
+          echo "<a class='link' href='https://www.fiepargentinaoficial.com/aulavirtual' style='font-weight: normal; text-decoration: underline; color: #5570ea;'>Fiepargentinaoficial.com/aulavirtual</a></h2>";
+          echo "<div style='margin-bottom: 40px;''>";
+          echo "<table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
+          echo "<thead><tr>" ;
+          echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Usuario/Username</th>";
+          echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Contraseña/Password</th>";
+          echo "</tr></thead><tbody>";
+          echo "<tr class='order_item'><td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap: break-word;'>";
+          echo $data['username'] . "</td>";
+          echo "<td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
+          echo  $data['password'] . "</td>";
+          echo " </tr></tbody></table></div>";
+        }
+        echo '<hr>';
       }
     }
   }
 }
 
-
-// add_action('woocommerce_checkout_create_order', 'save_order_custom_meta_data', 10, 2 );
-// function save_order_custom_meta_data( $order, $data ) {
-//     if( isset($_POST['totaleiva1']) && ! empty($_POST['totaleiva1']) ) {
-//         $order->update_meta_data( '_totale_iva_1', esc_attr( $_POST['totaleiva1'] ) );
-//     }
-//     if( isset($_POST['tfcarrello']) && ! empty($_POST['tfcarrello']) ) {
-//         $order->update_meta_data( '_totale_fin_carrello', esc_attr( $_POST['tfcarrello'] ) );
-//     }
-// }
 
