@@ -161,13 +161,11 @@ function add_custom_taxonomy() {
                );
     register_post_type( 'cursos', $args);
   }
-   
-
-	
-	//quita los productos de la categorias Cursos Online
-	add_action( 'woocommerce_product_query', 'bbloomer_hide_products_category_shop' );
-	   
-	function bbloomer_hide_products_category_shop( $q ) {
+     
+  
+//quita los productos de la categorias Cursos Online
+add_action( 'woocommerce_product_query', 'bbloomer_hide_products_category_shop' );
+function bbloomer_hide_products_category_shop( $q ) {
 	  
 		$tax_query = (array) $q->get( 'tax_query' );
 	  
@@ -178,11 +176,12 @@ function add_custom_taxonomy() {
 			   'operator' => 'NOT IN'
 		);
 		$q->set( 'tax_query', $tax_query );
-	  
-	}  
-	
-	//Quita las categorias de la tienda que no queremos mostrar
-	function get_subcategory_terms( $terms, $taxonomies, $args ) {
+}  
+  
+
+//Quita las categorias de la tienda que no queremos mostrar
+add_filter( 'get_terms', 'get_subcategory_terms', 10, 3 );
+function get_subcategory_terms( $terms, $taxonomies, $args ) {
 
 		$new_terms = array();
 		$hide_category = array( 20, 39 ); // ID de las categorias que no queremos que se muestren
@@ -197,73 +196,27 @@ function add_custom_taxonomy() {
 			$terms = $new_terms;
 		}
 		return $terms;
-	}
-	add_filter( 'get_terms', 'get_subcategory_terms', 10, 3 );
- 
-
-
+}
+  
 
 // Registra el script para validar el formulario de cheqout
+add_action ('wp_enqueue_scripts', 'custom_checkout_validation_scripts');
 function custom_checkout_validation_scripts () {
   wp_register_script('miscript', get_stylesheet_directory_uri(). '/assets/js/checkout-validation.js', array('jquery'), '1', true );
   wp_enqueue_script('miscript');
 }
 
-add_action ('wp_enqueue_scripts', 'custom_checkout_validation_scripts');
-
 
 // Registra el script para el acordeon
+add_action ('wp_enqueue_scripts', 'acordeon_scripts');
 function acordeon_scripts () {
   wp_register_script('acordeon', get_stylesheet_directory_uri(). '/assets/js/acordeon.js', array('jquery'), '1', true );
   wp_enqueue_script('acordeon');
 }
 
-add_action ('wp_enqueue_scripts', 'acordeon_scripts');
-
-// function custom_price_shortcode_callback( $atts ) {
-
-//   $atts = shortcode_atts( array(
-//       'id' => null,
-//   ), $atts, 'product_price' );
-
-//   $html = '';
-
-//   if( intval( $atts['id'] ) > 0 && function_exists( 'wc_get_product' ) ){
-//       // Get an instance of the WC_Product object
-//       $product = wc_get_product( intval( $atts['id'] ) );
-
-//       // Get the product prices
-//       $price         = wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) ); // Get the active price
-//       $regular_price = wc_get_price_to_display( $product, array( 'price' => $product->get_regular_price() ) ); // Get the regular price
-//       $sale_price    = wc_get_price_to_display( $product, array( 'price' => $product->get_sale_price() ) ); // Get the sale price
-
-//       // Your price CSS styles
-//       $style1 = 'style="font-size:25px;color:#23282D;font-weight:bold;text-decoration: none;"';
-//       $style2 = 'style="font-size:25px;color:#23282D"';
-
-//       // Formatting price settings (for the wc_price() function)
-//       $args = array(
-//           'ex_tax_label'       => false,
-//           'currency'           => 'ARS',
-//           'decimal_separator'  => '.',
-//           'thousand_separator' => ' ',
-//           'decimals'           => 2,
-//           'price_format'       => get_woocommerce_price_format(),
-//       );
-
-//       // Formatting html output
-//       if( ! empty( $sale_price ) && $sale_price != 0 && $sale_price < $regular_price )
-        
-//           $html = "<del $style2>" . wc_price( $regular_price, $args ) . "</del>&nbsp; &nbsp;<ins $style1>AR" . wc_price( $sale_price, $args ) . "</ins>"; // Sale price is set
-//       else
-//           $html = "<ins $style1>" . wc_price( $price, $args ) . "</ins>"; // No sale price set
-//   }
-//   return $html;
-// }
-// add_shortcode( 'product_price', 'custom_price_shortcode_callback' );
-
 
 //Permite fijar un curso dentro de su página a la parte superior
+add_filter( 'the_posts', 'wpb_cpt_sticky_at_top' );
 function wpb_cpt_sticky_at_top( $posts ) {
   
   // apply it on the archives only
@@ -315,18 +268,16 @@ function wpb_cpt_sticky_at_top( $posts ) {
   return $posts;
 }
 
-add_filter( 'the_posts', 'wpb_cpt_sticky_at_top' );
 
 // Add sticky class in article title to style sticky posts differently
-
+add_filter('post_class', 'cpt_sticky_class');
 function cpt_sticky_class($classes) {
           if ( is_sticky() ) : 
           $classes[] = 'sticky';
           return $classes;
       endif; 
       return $classes;
-              }
-  add_filter('post_class', 'cpt_sticky_class');
+}
   
 
 
@@ -361,9 +312,9 @@ function cpt_sticky_class($classes) {
   // array of filters (field key => field name)
 
 
-// action
-add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
 
+// action para busquedas
+add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
 function my_pre_get_posts( $query ) {
 	
 	// bail early if is in admin
@@ -399,24 +350,23 @@ function my_pre_get_posts( $query ) {
   return;
 }
 
-// Actualiza automáticamente el estado de los pedidos a COMPLETADO
-// add_action( 'woocommerce_order_status_processing', 'actualiza_estado_pedidos_a_completado' );
+
+// Actualiza automáticamente el estado de PROCESADO a COMPLETADO
 // // add_action( 'woocommerce_order_status_on-hold', 'actualiza_estado_pedidos_a_completado' );
-// function actualiza_estado_pedidos_a_completado( $order_id ) {
-//     global $woocommerce;
+add_action( 'woocommerce_order_status_processing', 'actualiza_estado_pedidos_a_completado' );
+function actualiza_estado_pedidos_a_completado( $order_id ) {
+    global $woocommerce;
     
-//     //ID's de las pasarelas de pago a las que afecta
-//     // $paymentMethods = array( 'bacs', 'cheque', 'cod', 'paypal' );
-//     $paymentMethods = array( 'woo-mercado-pago-basic' );
+    //ID's de las pasarelas de pago a las que afecta
+    // $paymentMethods = array( 'bacs', 'cheque', 'cod', 'paypal' );
+    $paymentMethods = array( 'woo-mercado-pago-basic' );
     
-//     if ( !$order_id ) return;
-//     $order = new WC_Order( $order_id );
+    if ( !$order_id ) return;
+    $order = new WC_Order( $order_id );
 
-//     if ( !in_array( $order->payment_method, $paymentMethods ) ) return;
-//     $order->update_status( 'completed' );
-// }
-
-add_action( 'woocommerce_email_before_order_table', 'dl_añadir_contenido_email_woo', 30, 4 ); // En este caso decimos que el cotenido esté antes de la tabla.
+    if ( !in_array( $order->payment_method, $paymentMethods ) ) return;
+    $order->update_status( 'completed' );
+}
 
 
 class Producto
@@ -432,17 +382,18 @@ class Producto
       }
     };
   
-    class Matricula {
+class Matricula {
       public $Nombre;
       public $Apellido;
       public $Email; 
       public $Productos;
     }
 
+//Agregar contenido en el email de completado
+add_action( 'woocommerce_email_before_order_table', 'dl_añadir_contenido_email_woo', 30, 4 ); // En este caso decimos que el cotenido esté antes de la tabla.
+
 function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $email ) {
   //Aqui ponemos el ID del correo que queremos modificar
-  
-    
   if ( $email->id == 'customer_completed_order' ) { 
     echo '<p><h3 style="color: #5570ea; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">Para iniciar te sugerimos los siguientes tutoriales <br>To start we suggest the following tutorials</h3>'; // Entre las dos p modificamos el mensaje que queremos mostrar
     echo '<ol><li><a href="https://www.youtube.com/watch?v=PW2qaxwKbHA&feature=youtu.be" target="blank">Conociendo el acceso principal del campus</a></li>';
@@ -473,7 +424,7 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
     $Matricula->Email = $datos['billing']['email'];
 	  $Matricula->Productos = $productos;
     
-    // $url = 'http://localhost:49220/api/moodle/procesarInscripcion';
+    // $url = 'http://localhost:49220/moodle/procesarInscripcion';
     $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
     $ch = curl_init($url);
     $payload = json_encode($Matricula);
@@ -515,3 +466,66 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
 }
 
 
+class PreInscripcion {
+  public $Email; 
+  public $Productos;
+}
+class ErroresResponse{
+        public $Cod;
+        public $Mensaje;
+        public $Response;
+        public $JsonRequest;
+        public $JsonResponse;
+}
+//Valida que el email no se encuentre inscripto en el curso antes
+add_action( 'woocommerce_checkout_process', 'action_woocommerce_checkout_process', 10, 1 ); 
+function action_woocommerce_checkout_process( $wccs_custom_checkout_field_pro_process ) { 
+  $nombre = $_POST['billing_first_name'];
+  if(!preg_match('/[^a-Z]/',$nombre)){
+    wc_add_notice( __('Apellidos / Last name ' . $nombre . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+  }
+
+  $apellido = $_POST['billing_last_name'];
+  if(!preg_match('/[^a-Z]/',$apellido)){
+    wc_add_notice( __('Nombre / First Name ' . $apellido . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+  }
+
+  if ( WC()->cart->is_empty() ) {
+    wc_add_notice( __( 'Debes tener algun curso en tu pedido.' ), 'error' );
+  }else{
+    $productos = [];
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ){
+      $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+      $var = $_product->get_categories();
+      if($var = 'Cursos Online'){
+        $producto = new Producto();
+        //get idCursoMoodle
+        $producto->product_id = get_post_meta( $_product->get_id(), 'idcursomoodle', true );
+        $producto->product_name = $_product->get_name();
+        array_push($productos, $producto);
+      }
+    }
+
+    $emailCliente = $_POST['billing_email'];
+
+    $PreInscripcion = new PreInscripcion();
+    $PreInscripcion->Email = $emailCliente;
+	  $PreInscripcion->Productos = $productos;
+
+    //$url = 'http://localhost:49220/moodle/procesarPreInscripcion';
+    $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarPreInscripcion';
+    $ch = curl_init($url);
+    $payload = json_encode($PreInscripcion);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    //curl_close($ch);
+    $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if($httpStatus != 200){
+      $deserializedInstance = new ErroresResponse();
+      $deserializedInstance = json_decode($response);
+      wc_add_notice( __($deserializedInstance->Mensaje  ), 'error' );  
+    }
+  }
+}; 
