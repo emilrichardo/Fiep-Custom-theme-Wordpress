@@ -31,8 +31,18 @@
                     // echo $value;
                     
                     //echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
-                    echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
-                    echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
+                    if($product->get_stock_quantity() != 0){
+                        echo '<div> Cupos Disponibles: '.$product->get_stock_quantity(). '</div>';
+                    }
+                    if($product->get_price() != 0){
+                        echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
+                    }else{
+                        echo '<h3 class="mt-3"> Gratis / Free </h3>';
+                    }
+
+                    if($product->get_stock_quantity() != 0){
+                        echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
+                    }
                 }
             }else{
                 echo wp_kses_post ('<div class="mb-0">' . get_template_part( 'template-parts/entry/entry-header' ) . '</div>') ;   

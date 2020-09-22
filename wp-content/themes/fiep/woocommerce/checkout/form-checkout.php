@@ -31,6 +31,17 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
+<?php 
+foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+	$_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+	$var = $_product->get_categories();
+	if($var = 'Cursos Online'){
+		echo '<div class="alert alert-warning mt-5 text-center"><p class="h6"><i class="fa fa-exclamation-circle text-warning"></i> <strong>Atención:</strong> Los siguientes datos serán utilizados para matricularlo en la plataforma</p></div>';
+		break;
+	}
+}
+?>
+
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
