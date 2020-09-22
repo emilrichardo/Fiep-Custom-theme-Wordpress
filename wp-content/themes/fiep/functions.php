@@ -512,8 +512,8 @@ function action_woocommerce_checkout_process( $wccs_custom_checkout_field_pro_pr
     $PreInscripcion->Email = $emailCliente;
 	  $PreInscripcion->Productos = $productos;
 
-    $url = 'http://localhost:49220/moodle/procesarPreInscripcion';
-    //$url = 'http://sirwiq.com/Api/Fiep/moodle/procesarPreInscripcion';
+    //$url = 'http://localhost:49220/moodle/procesarPreInscripcion';
+    $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarPreInscripcion';
     $ch = curl_init($url);
     $payload = json_encode($PreInscripcion);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
