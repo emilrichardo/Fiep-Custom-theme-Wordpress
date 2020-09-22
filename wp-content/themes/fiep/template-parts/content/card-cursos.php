@@ -31,6 +31,9 @@
                     // echo $value;
                     
                     //echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
+                    if($product->get_stock_quantity() != 0){
+                        echo '<div> Cupos Disponibles: '.$product->get_stock_quantity(). '</div>';
+                    }
                     echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
                     echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
                 }
