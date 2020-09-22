@@ -418,9 +418,8 @@ function my_pre_get_posts( $query ) {
 
 add_action( 'woocommerce_email_before_order_table', 'dl_añadir_contenido_email_woo', 30, 4 ); // En este caso decimos que el cotenido esté antes de la tabla.
 
-function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $email ) {
-  //Aqui ponemos el ID del correo que queremos modificar
-  class Producto
+
+class Producto
     {
       public $product_name;
       public $product_id;
@@ -439,6 +438,10 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
       public $Email; 
       public $Productos;
     }
+
+function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $email ) {
+  //Aqui ponemos el ID del correo que queremos modificar
+  
     
   if ( $email->id == 'customer_completed_order' ) { 
     echo '<p><h3 style="color: #5570ea; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">Para iniciar te sugerimos los siguientes tutoriales <br>To start we suggest the following tutorials</h3>'; // Entre las dos p modificamos el mensaje que queremos mostrar
