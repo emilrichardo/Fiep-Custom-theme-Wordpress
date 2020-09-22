@@ -481,14 +481,19 @@ class ErroresResponse{
 add_action( 'woocommerce_checkout_process', 'action_woocommerce_checkout_process', 10, 1 ); 
 function action_woocommerce_checkout_process( $wccs_custom_checkout_field_pro_process ) { 
   $nombre = $_POST['billing_first_name'];
-  if(!preg_match('/[^a-Z]/',$nombre)){
-    wc_add_notice( __('Apellidos / Last name ' . $nombre . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+  if($nombre != ''){
+	  if( !preg_match('/[^a-Z]/',$nombre)){
+		  wc_add_notice( __('Nombre / First Name  ' . $nombre . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+	  }
   }
 
   $apellido = $_POST['billing_last_name'];
-  if(!preg_match('/[^a-Z]/',$apellido)){
-    wc_add_notice( __('Nombre / First Name ' . $apellido . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+  if($apellido != ''){
+	  if(!preg_match('/[^a-Z]/',$apellido)){
+		  wc_add_notice( __('Apellidos / Last name ' . $apellido . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+	  }
   }
+  
 
   if ( WC()->cart->is_empty() ) {
     wc_add_notice( __( 'Debes tener algun curso en tu pedido.' ), 'error' );
