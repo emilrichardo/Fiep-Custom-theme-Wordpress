@@ -426,8 +426,8 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
     $Matricula->Email = $datos['billing']['email'];
 	  $Matricula->Productos = $productos;
     
-    $url = 'http://localhost:49220/moodle/procesarInscripcion';
-    //$url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
+    //$url = 'http://localhost:49220/moodle/procesarInscripcion';
+    $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
     $ch = curl_init($url);
     $payload = json_encode($Matricula);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
