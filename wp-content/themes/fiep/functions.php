@@ -385,6 +385,7 @@ class Producto
 class Matricula {
       public $Nombre;
       public $Apellido;
+      public $Documento;
       public $Email; 
       public $Productos;
     }
@@ -421,11 +422,12 @@ function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $e
     $datos = $order->data;
     $Matricula->Nombre = $datos['billing']['first_name'];
     $Matricula->Apellido = $datos['billing']['last_name'];
+    $Matricula->Documento = get_post_meta( $order->get_id(), '_billing_document', true );
     $Matricula->Email = $datos['billing']['email'];
 	  $Matricula->Productos = $productos;
     
-    // $url = 'http://localhost:49220/moodle/procesarInscripcion';
-    $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
+    $url = 'http://localhost:49220/moodle/procesarInscripcion';
+    //$url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
     $ch = curl_init($url);
     $payload = json_encode($Matricula);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
@@ -482,15 +484,22 @@ add_action( 'woocommerce_checkout_process', 'action_woocommerce_checkout_process
 function action_woocommerce_checkout_process( $wccs_custom_checkout_field_pro_process ) { 
   $nombre = $_POST['billing_first_name'];
   if($nombre != ''){
-	  if( !preg_match('/[^a-Z]/',$nombre)){
+	  if(!preg_match("/^(?!-+)[a-zA-Z-ñáéíóú\s]*$/", $nombre)){
 		  wc_add_notice( __('Nombre / First Name  ' . $nombre . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
 	  }
   }
 
   $apellido = $_POST['billing_last_name'];
   if($apellido != ''){
-	  if(!preg_match('/[^a-Z]/',$apellido)){
+    if(!preg_match("/^(?!-+)[a-zA-Z-ñáéíóú\s]*$/", $apellido)){
 		  wc_add_notice( __('Apellidos / Last name ' . $apellido . ' solo se aceptan letras / only letters are accepted'  ), 'error' );  
+	  }
+  }
+  
+  $documento = $_POST['billing_document'];
+  if($documento != ''){
+    if(!preg_match("/^(?!-+)[0-9]*$/", $documento)){
+		  wc_add_notice( __('Documento / Document ' . $documento . ' solo se aceptan numeros / only numbers are accepted'  ), 'error' );  
 	  }
   }
   
