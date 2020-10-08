@@ -107,13 +107,15 @@
                 <p class="h5">Lo lamentamos, las inscripciones para este curso se encuentran cerradas. <br> <strong>Lo esperamos la próxima.</strong> </p>
             </div>
             <?php
-            else :
+            else:
+                if($estado_inscripciones['value'] == 'proximamente'):
             ?>
-            <div class="alert alert-warning text-center h1">
-                <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                <p class="h6">Podrás inscribirte a este curso partir del: <br> <strong><?php echo $fecha_apertura ;?> </strong> </p>
-            </div>
+                <div class="alert alert-warning text-center h1">
+                    <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
+                    <p class="h6">Podrás inscribirte a este curso partir del: <br> <strong><?php echo $fecha_apertura ;?> </strong> </p>
+                </div>
             <?php
+                endif;
             endif;
             ?>
 
