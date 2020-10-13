@@ -40,7 +40,7 @@
                         echo '<h3 class="mt-3"> Gratis / Free </h3>';
                     }
 
-                    if($product->get_stock_quantity() != 0){
+                    if($product->get_stock_quantity() != 0 || $product->get_stock_status() == 'instock'){
                         echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
                     }
                 }
