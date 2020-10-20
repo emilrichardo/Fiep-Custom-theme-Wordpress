@@ -93,18 +93,32 @@
             }else{
                 $producto = get_field('producto_tienda'); 
                 if($producto != null && count($producto) != 0){
-                   
                     $product = wc_get_product( $producto[0]->ID );
-                    echo '<div class="text-center">'. $product->get_image() . '</div><br>';
+                    // echo '<div class="text-center">'. $product->get_image() . '</div><br>';
+                    echo '<div class="card mb-5 shadow"><div class="card-body"><div class="text-center">'. $product->get_image() .'</div><br></div></div>';
                 }
             }
+            if ($duracion_del_curso){
+                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Duracion:&nbsp;' . $duracion_del_curso . '</h5> <hr class="my-1">');
+            }
+            if ($cupos){
+                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted">' . $cupos['choices'][$cupos_value] . '</h5> <hr class="my-1">');
+            };
+            if ($certificaciones){
+                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> ' . $certificaciones . '</h5> <hr class="my-1">');
+            };
+            if ($institucion_organizadora){
+                echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Organizado por: ' . $institucion_organizadora . '</h5> <hr class="my-1">');
+            };
+
+
             if ($estado_inscripciones['value'] == 'cerradas'):
                 
             ?>
             
             <div class="alert alert-danger text-center h1">
                 <i class="fa fa-frown-o text-danger " aria-hidden="true"></i>
-                <p class="h5">Lo lamentamos, las inscripciones para este curso se encuentran cerradas. <br> <strong>Lo esperamos la próxima.</strong> </p>
+                <p class="h5">Lo lamentamos, las inscripciones se encuentran cerradas. <br> <strong>Lo esperamos la próxima.</strong> </p>
             </div>
             <?php
             else:
@@ -119,20 +133,7 @@
             endif;
             ?>
 
-            <?php
-                if ($duracion_del_curso){
-                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Duracion:&nbsp;' . $duracion_del_curso . '</h5> <hr class="my-1">');
-                }
-                if ($cupos){
-                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted">' . $cupos['choices'][$cupos_value] . '</h5> <hr class="my-1">');
-                };
-                if ($certificaciones){
-                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> ' . $certificaciones . '</h5> <hr class="my-1">');
-                };
-                if ($institucion_organizadora){
-                    echo wp_kses_post('<h5 class="small  mt-0 mb-0 text-muted"> Organizado por: ' . $institucion_organizadora . '</h5> <hr class="my-1">');
-                };
-            ?>
+           
             <?php
             echo wp_kses_post('<div class="mt-5"><p class="h6"> <strong>¿A quién está dirigido?</strong> <br>' . $dirigido . '</p></div>');
             ;?>
