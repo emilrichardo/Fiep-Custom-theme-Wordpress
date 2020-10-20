@@ -16,50 +16,41 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'sinatra-article' ); ?><?php sinatra_schema_markup( 'article' ); ?>>
 
 	<?php
-	if ( 'quote' === get_post_format() ) {
-		get_template_part( 'template-parts/entry/format/media', 'quote' );
-	}
+		$categoria = get_the_category( $post->ID );
+		$padre = get_the_category_by_ID( $categoria[0]->category_parent);
+		
+		if ( 'quote' === get_post_format() ) {
+			get_template_part( 'template-parts/entry/format/media', 'quote' );
+		}
 
-	$sinatra_single_post_elements = sinatra_get_single_post_elements();
-	$category = get_queried_object();			
-	
+		$sinatra_single_post_elements = sinatra_get_single_post_elements();
 
-	if ( ! empty( $sinatra_single_post_elements ) ) {
-		foreach ( $sinatra_single_post_elements as $sinatra_element ) {
+		if ( ! empty( $sinatra_single_post_elements ) ) {
+			foreach ( $sinatra_single_post_elements as $sinatra_element ) {
 
-			if ( 'content' === $sinatra_element ) { 
-				
-				
-				
-				
-				do_action( 'sinatra_before_single_content' );	
-
-				$post = get_post();
-				$parent = '';
-				$category_detail=get_the_category($post->ID);//$post->ID
-					if($category_detail[0]->parent != 0){
-						$parent = get_term( $category_detail[0]->parent );
-					}else{
-						$parent = $category_detail[0]->slug;
-					}
+				if ( 'content' === $sinatra_element ) { 
+					do_action( 'sinatra_before_single_content' );	
 					
-					if($parent == 'webinar'){
-						get_template_part( 'template-parts/content/evento-webinar' , $sinatra_element );
-					}
+					//Valida que el evento tenga producto 
+					$producto = get_field('producto_tienda'); 
 
-				
-				
-				get_template_part( 'template-parts/entry/entry', $sinatra_element );
-				do_action( 'sinatra_after_single_content' );
-			} else {
-				get_template_part( 'template-parts/entry/entry', $sinatra_element );
+					if(($padre == 'Webinar' || $categoria[0]->name == 'Webinar') && ($producto != null && count($producto) != 0)){
+						get_template_part( 'template-parts/content/evento-webinar' , $sinatra_element );
+						?> 
+						<div class="col-12 col-md-7">
+							<?php get_template_part( 'template-parts/entry/entry', $sinatra_element ); ?>
+						</div>
+						<?php
+					}else{
+						get_template_part( 'template-parts/entry/entry', $sinatra_element );
+					}
+					do_action( 'sinatra_after_single_content' );
+				} else {
+					get_template_part( 'template-parts/entry/entry', $sinatra_element );
+				}
 			}
 		}
-	}
 	?>
-
-                        
-                    
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <?php do_action( 'sinatra_after_article' ); ?>
