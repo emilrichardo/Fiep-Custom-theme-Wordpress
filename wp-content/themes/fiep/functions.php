@@ -396,78 +396,120 @@ add_action( 'woocommerce_email_before_order_table', 'dl_añadir_contenido_email_
 function dl_añadir_contenido_email_woo( $order, $sent_to_admin, $plain_text, $email ) {
   //Aqui ponemos el ID del correo que queremos modificar
   if ( $email->id == 'customer_completed_order' ) { 
-    echo '<p><h3 style="color: #5570ea; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">Para iniciar te sugerimos los siguientes tutoriales <br>To start we suggest the following tutorials</h3>'; // Entre las dos p modificamos el mensaje que queremos mostrar
-    echo '<ol><li><a href="https://www.youtube.com/watch?v=PW2qaxwKbHA&feature=youtu.be" target="blank">Conociendo el acceso principal del campus</a></li>';
-    echo '<li><a href="https://www.youtube.com/watch?v=LSNxzqqRHVI&feature=youtu.be" target="blank">Editar mi perfil</a></li>';
-    echo '<li><a href="https://www.youtube.com/watch?v=UvPaGHL5-30&feature=youtu.be" target="blank">Principales herramientas</a></li></ol><br><hr>';
-    
-    //$order = wc_get_order( $order_id );
     $items = $order->get_items();
     
-    $Matricula = new Matricula();
+    $productos = [];
+    $links = [];
 
-	  $productos = [];
+    //recorre la lista de productos
     foreach ( $items as $item ) {
-      $producto = new Producto();
-      //get id Producto
-      $product_id = $item['product_id'];
-      //get idCursoMoodle
-      $producto->product_id = get_post_meta( $product_id, 'idcursomoodle', true );
-      $producto->product_name = $item['name'];
-      $producto->subtotal = $item['subtotal'];
-      $producto->quantity = $item['quantity'];
-      array_push($productos, $producto);
-    }
-  
-    $datos = $order->data;
-    $Matricula->Nombre = $datos['billing']['first_name'];
-    $Matricula->Apellido = $datos['billing']['last_name'];
-    $Matricula->Documento = get_post_meta( $order->get_id(), '_billing_document', true );
-    $Matricula->Email = $datos['billing']['email'];
-	  $Matricula->Productos = $productos;
-    
-    //$url = 'http://localhost:49220/moodle/procesarInscripcion';
-    $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
-    $ch = curl_init($url);
-    $payload = json_encode($Matricula);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($ch);
-    //curl_close($ch);
-    $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    if($httpStatus == 200){
-      $data = json_decode($result, true);
-      if($data != null && count($data) != 0){
-        echo '<h4>'. $data['username'] .' ya te encuentras matriculado en:</h4>';
-        echo '<ul>';
-        foreach ($Matricula->Productos as $item) {
-          echo '<li>' . $item->product_name . '</li>';
-        }
-        echo '</ul>';
-        
-        if($data['password'] != null){
-          echo "<h2 style='color: #5570ea; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>";
-          echo "<a class='link' href='https://www.fiepargentinaoficial.com/aulavirtual' style='font-weight: normal; text-decoration: underline; color: #5570ea;'>Fiepargentinaoficial.com/aulavirtual</a></h2>";
-          echo "<div style='margin-bottom: 40px;''>";
-          echo "<table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
-          echo "<thead><tr>" ;
-          echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Usuario/Username</th>";
-          echo "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Contraseña/Password</th>";
-          echo "</tr></thead><tbody>";
-          echo "<tr class='order_item'><td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap: break-word;'>";
-          echo $data['username'] . "</td>";
-          echo "<td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'>";
-          echo  $data['password'] . "</td>";
-          echo " </tr></tbody></table></div>";
-        }
-        echo '<hr>';
+      $categoriaProducto = get_the_terms($item['product_id'], 'product_cat' );
+      if($categoriaProducto[0]->slug=='cursos-online'){
+        $producto = new Producto();
+        //get id Producto
+        $product_id = $item['product_id'];
+        //get idCursoMoodle
+        $producto->product_id = get_post_meta( $product_id, 'idcursomoodle', true );
+        $producto->product_name = $item['name'];
+        $producto->subtotal = $item['subtotal'];
+        $producto->quantity = $item['quantity'];
+        array_push($productos, $producto);
+      }else if($categoriaProducto[0]->slug=='webinar') {
+        $link = get_post_meta( $item['product_id'], 'webinar_link', true );
+        array_push($links, $link['url']);
       }
+    }
+    
+    //Cursos
+    if(count($productos) != 0){
+      echo '<p><h3 style="color: #5570ea; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;">Para iniciar te sugerimos los siguientes tutoriales <br>To start we suggest the following tutorials</h3>'; // Entre las dos p modificamos el mensaje que queremos mostrar
+      echo '<ol><li><a href="https://www.youtube.com/watch?v=PW2qaxwKbHA&feature=youtu.be" target="blank">Conociendo el acceso principal del campus</a></li>';
+      echo '<li><a href="https://www.youtube.com/watch?v=LSNxzqqRHVI&feature=youtu.be" target="blank">Editar mi perfil</a></li>';
+      echo '<li><a href="https://www.youtube.com/watch?v=UvPaGHL5-30&feature=youtu.be" target="blank">Principales herramientas</a></li></ol><br><hr>';
+      $datosMatricula = Matricular($productos, $order);
+      echo $datosMatricula;
+    }
+
+    //Webinars
+    if(count($links) != 0){
+      $datosWebinars = Webinars($links);
+      echo $datosWebinars;
     }
   }
 }
 
+function Matricular($productos, $order){
+  $return='';
+  $datos = $order->data;
 
+  $Matricula = new Matricula();
+  $Matricula->Nombre = $datos['billing']['first_name'];
+  $Matricula->Apellido = $datos['billing']['last_name'];
+  $Matricula->Documento = get_post_meta( $order->get_id(), '_billing_document', true );
+  $Matricula->Email = $datos['billing']['email'];
+	$Matricula->Productos = $productos;  
+
+  //$url = 'http://localhost:49220/moodle/procesarInscripcion';
+  $url = 'http://sirwiq.com/Api/Fiep/moodle/procesarInscripcion';
+  $ch = curl_init($url);
+  $payload = json_encode($Matricula);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $result = curl_exec($ch);
+    //curl_close($ch);
+  $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  if($httpStatus == 200){
+    $data = json_decode($result, true);
+    if($data != null && count($data) != 0){
+      /*echo*/  $return.='<h4>'. $data['username'] .' ya te encuentras matriculado en:</h4> ';
+      /*echo*/  $return.= '<ul>';
+      foreach ($Matricula->Productos as $item) {
+        /*echo*/  $return.= '<li>' . $item->product_name . '</li>';
+      }
+      /*echo*/  $return.= '</ul>';
+       
+      if($data['password'] != null){
+        /*echo*/  $return.= "<h2 style='color: #5570ea; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'> ";
+        /*echo*/  $return.= "<a class='link' href='https://www.fiepargentinaoficial.com/aulavirtual' style='font-weight: normal; text-decoration: underline; color: #5570ea;'>Fiepargentinaoficial.com/aulavirtual</a></h2> ";
+        /*echo*/  $return.= "<div style='margin-bottom: 40px;''> ";
+        /*echo*/  $return.= "<table class='td' cellspacing='0' cellpadding='6' border='1' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; width: 100%; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'> ";
+        /*echo*/  $return.= "<thead><tr> " ;
+        /*echo*/  $return.= "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Usuario/Username</th> ";
+        /*echo*/  $return.= "<th class='td' scope='col' style='color: #636363; border: 1px solid #e5e5e5; vertical-align: middle; padding: 12px; text-align: left;'>Contraseña/Password</th> ";
+        /*echo*/  $return.= "</tr></thead><tbody> ";
+        /*echo*/  $return.= "<tr class='order_item'><td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap: break-word;'> ";
+        /*echo*/  $return.= $data['username'] . "</td> ";
+        /*echo*/  $return.= "<td class='td' style='color: #636363; border: 1px solid #e5e5e5; padding: 12px; text-align: left; vertical-align: middle; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;'> ";
+        /*echo*/  $return.=  $data['password'] . "</td> ";
+        /*echo*/  $return.= " </tr></tbody></table></div> ";
+      }
+      /*echo*/  $return.= '<hr> ';
+    }
+  }
+  return $return;
+}
+
+function Webinars($links){
+  $return='';
+  $return.='<div style="margin-bottom: 40px"> ';
+  $return.='<table class="td" cellspacing="0" cellpadding="6" border="1" style="color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;width: 100%">';
+  $return.='<thead><tr> ';
+  $return.='<th class="td" scope="col" style="color: #636363;border: 1px solid #e5e5e5;vertical-align: middle;padding: 12px;text-align: left">Enlace/Link</th> ';
+  $return.='</tr></thead> ';
+  $return.='<tbody><tr class="order_item"> ';
+  foreach ($links as $url) {
+    $return.='<td class="td" style="color: #636363;border: 1px solid #e5e5e5;padding: 12px;text-align: left;vertical-align: middle"> ';
+    $return.='<a href="'. $url  .'" target="blank">'. $url .'</a>';
+    $return.='</td> </tr></tbody>';
+  }
+  $return.='</table></div> ';
+  return $return;
+}
+
+
+
+//-------------------------------------------------------------------------------------
 class PreInscripcion {
   public $Email; 
   public $Productos;

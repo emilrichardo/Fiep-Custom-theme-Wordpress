@@ -3,56 +3,15 @@
     "title": "Evento",
     "fields": [
         {
-            "key": "field_5f09e7de0b175",
-            "label": "Plataforma",
-            "name": "lugar",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>": "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>",
-                "Zoom": "Zoom"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5f23005d49f95",
-            "label": "Enlace",
-            "name": "enlace",
-            "type": "url",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_5f09e7fc0b176",
-            "label": "Fecha",
-            "name": "fecha",
+            "key": "field_5f8dde2acb63b",
+            "label": "Titulo",
+            "name": "titulo",
             "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "100",
                 "class": "",
                 "id": ""
             },
@@ -63,23 +22,46 @@
             "maxlength": ""
         },
         {
-            "key": "field_5f09e8950b177",
-            "label": "Tema",
-            "name": "tema",
-            "type": "textarea",
+            "key": "field_5f09e7fc0b176",
+            "label": "Fecha",
+            "name": "fecha",
+            "type": "date_time_picker",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
+            "display_format": "d\/m\/Y g:i a",
+            "return_format": "d\/m\/Y g:i a",
+            "first_day": 1
+        },
+        {
+            "key": "field_5f09e7de0b175",
+            "label": "Plataforma",
+            "name": "lugar",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>": "Youtube <i class=\"si-icon si-youtube text-danger\" aria-hidden=\"true\"><\/i>",
+                "Zoom <i class=\"si-icon si-zoom text-danger\" aria-hidden=\"true\"><\/i>": "Zoom <i class=\"si-icon si-zoom text-danger\" aria-hidden=\"true\"><\/i>"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_5f2c9843f4fee",
@@ -122,6 +104,41 @@
                     "prefix_name": 0
                 }
             ]
+        },
+        {
+            "key": "field_5f23005d49f95",
+            "label": "Enlace gratuito",
+            "name": "enlace_gratuito",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5f09e8950b177",
+            "label": "Tema",
+            "name": "tema",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -130,6 +147,62 @@
                 "param": "post_category",
                 "operator": "==",
                 "value": "category:webinar"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:aprendizaje-motor"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:deporte-webinar"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:discapacidad"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:e-f-escolar"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:e-f-y-gestion"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:formacion-docente"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:recreacion"
+            }
+        ],
+        [
+            {
+                "param": "post_category",
+                "operator": "==",
+                "value": "category:salud-webinar"
             }
         ]
     ],
@@ -141,5 +214,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1596761118
+    "modified": 1603135727
 }

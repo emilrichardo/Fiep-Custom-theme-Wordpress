@@ -16,21 +16,17 @@
                    
                     $product = wc_get_product( $producto[0]->ID );
                     echo '<div class="text-center">'. $product->get_image() . '</div><br>';
-                    echo wp_kses_post ('<div class="mb-0">' . get_template_part( 'template-parts/entry/entry-header' ) . '</div>') ; 
                     
-                    //echo var_dump($currencies);
+                    $categoria = get_the_terms ( $product->get_ID(), 'product_cat' );
+                    if($categoria->slug=='cursos-online' ){
+                        echo wp_kses_post ('<div class="mb-0">' . get_template_part( 'template-parts/entry/entry-header' ) . '</div>') ;     
+                    }else{
+                        echo '<h3 class="entry-title h5" itemprop="headline">' . get_field('titulo') . '</h3>';
+                    }
                     global $WOOCS;
                     global $woocommerce;
                     $currencies = $WOOCS->get_currencies();
-                    //echo  $product->get_price();
-                    //$value = apply_filters('woocs_exchange_value', $product->get_price());
-                    //echo $woocommerce->customer->country;
-                    // $currencies = $WOOCS->get_currencies();
-                    // $value = $product->get_price() * $currencies[$WOOCS->current_currency]['rate'];
-                    // $value = number_format($value, 2, $WOOCS->decimal_sep, '');
-                    // echo $value;
                     
-                    //echo '<h3 class="mt-3"> ' . $currencies[$WOOCS->current_currency]['name'] . $currencies[$WOOCS->current_currency]['symbol'] . ' ' . $product->get_price() . '</h3>';
                     if($product->get_stock_quantity() != 0){
                         echo '<div> Cupos Disponibles: '.$product->get_stock_quantity(). '</div>';
                     }
@@ -40,7 +36,7 @@
                         echo '<h3 class="mt-3"> Gratis / Free </h3>';
                     }
 
-                    if($product->get_stock_quantity() != 0){
+                    if($product->get_stock_quantity() != 0 || $product->get_stock_status() == 'instock'){
                         echo do_shortcode('[add_to_cart id="' . $producto[0]->ID . '" show_price="false" ]');
                     }
                 }
